@@ -176,12 +176,12 @@
 						<option value="minimal" <?php selected( $settings['theme'] ?? 'light', 'minimal' ); ?>>
 							<?php esc_html_e( 'Minimal', 'brezngeo' ); ?>
 						</option>
-						<option value="bavarian" <?php selected( $settings['theme'] ?? 'light', 'bavarian' ); ?>>
-							<?php esc_html_e( 'Bavarian', 'brezngeo' ); ?>
+						<option value="brezn" <?php selected( $settings['theme'] ?? 'light', 'brezn' ); ?>>
+							<?php esc_html_e( 'Brezn', 'brezngeo' ); ?>
 						</option>
 					</select>
 					<p class="description">
-						<?php esc_html_e( 'Light — clean card with a blue accent. Dark — same for dark-mode sites. Minimal — borderless, left stripe only. Bavarian — Bavarian blue with diamond header pattern.', 'brezngeo' ); ?>
+						<?php esc_html_e( 'Light — clean card with a blue accent. Dark — same for dark-mode sites. Minimal — borderless, left stripe only. Brezn — Brezn blue with diamond header pattern.', 'brezngeo' ); ?>
 						<br>
 						<?php
 						printf(

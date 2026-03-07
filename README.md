@@ -1,4 +1,4 @@
-# Bavarian Rank Engine
+# BreznGEO
 
 ![PHP 8.0+](https://img.shields.io/badge/PHP-8.0%2B-blue)
 ![WordPress 6.0+](https://img.shields.io/badge/WordPress-6.0%2B-21759b)
@@ -8,11 +8,11 @@
 
 🇩🇪 [Deutsche Version → README.de.md](README.de.md)
 
-**Website:** [bavarianrankengine.com](https://bavarianrankengine.com) &nbsp;·&nbsp; [How To](https://bavarianrankengine.com/howto.html) &nbsp;·&nbsp; [FAQ](https://bavarianrankengine.com/faq.html) &nbsp;·&nbsp; [Changelog](https://bavarianrankengine.com/changelog.html)
+**Website:** [brezngeo.com](https://brezngeo.com) &nbsp;·&nbsp; [How To](https://brezngeo.com/howto.html) &nbsp;·&nbsp; [FAQ](https://brezngeo.com/faq.html) &nbsp;·&nbsp; [Changelog](https://brezngeo.com/changelog.html)
 
 ---
 
-Bavarian Rank Engine is a lightweight SEO & GEO plugin for WordPress. It generates AI-powered meta descriptions, outputs Schema.org structured data, creates GEO content blocks for AI engines, and manages crawler access via robots.txt and llms.txt — all in one plugin, nothing hidden behind a paywall.
+BreznGEO is a lightweight SEO & GEO plugin for WordPress. It generates AI-powered meta descriptions, outputs Schema.org structured data, creates GEO content blocks for AI engines, and manages crawler access via robots.txt and llms.txt — all in one plugin, nothing hidden behind a paywall.
 
 It works with or without an AI key. It integrates without conflicts into Rank Math, Yoast, AIOSEO, and SEOPress. No SaaS. No telemetry. No upsells.
 
@@ -24,12 +24,12 @@ Most WordPress SEO plugins have evolved in the same direction: bloated feature s
 
 The AI wave made it worse. Plugins started offering "AI-powered" features — but as a proxy service. You pay a monthly fee, your content goes through their servers, they call the AI API on your behalf and add a margin on top.
 
-BRE takes a different approach:
+BreznGEO takes a different approach:
 
-- **Direct API access.** You store your own key from OpenAI, Anthropic, Google, or xAI. BRE calls the API directly. No middleman, no margin, no data passing through third-party servers.
+- **Direct API access.** You store your own key from OpenAI, Anthropic, Google, or xAI. BreznGEO calls the API directly. No middleman, no margin, no data passing through third-party servers.
 - **Clear output, not noise.** Meta descriptions, structured data, GEO content blocks, bot management. No readability scores, no keyword density meters, no upsell banners.
 - **No subscription.** GPL-2.0. Free to use on any number of sites. The only costs are API usage — typically fractions of a cent per post.
-- **No telemetry.** BRE sends no data home. No usage tracking, no remote logging, no analytics leaving your server.
+- **No telemetry.** BreznGEO sends no data home. No usage tracking, no remote logging, no analytics leaving your server.
 - **Works without AI.** No API key? The fallback extractor generates a usable meta description from post content using sentence boundary detection. Every post gets a description.
 
 Built in Passau, Bavaria — for [Donau2Space](https://donau2space.de), a personal AI blog, where exactly this was needed — and nothing more.
@@ -55,8 +55,8 @@ Built in Passau, Bavaria — for [Donau2Space](https://donau2space.de), a person
 ## Directory Structure
 
 ```
-bavarian-rank-engine/
-├── bavarian-rank-engine.php      # Plugin header, constants (BRE_VERSION, BRE_DIR, BRE_URL)
+brezngeo/
+├── brezngeo.php      # Plugin header, constants (BRE_VERSION, BRE_DIR, BRE_URL)
 ├── uninstall.php                 # Cleanup on plugin deletion
 ├── assets/
 │   ├── admin.css                 # Shared admin stylesheet
@@ -126,7 +126,7 @@ Generates SEO-optimized meta descriptions (150–160 characters) automatically w
 | Yoast SEO | `_yoast_wpseo_metadesc` |
 | AIOSEO | `_aioseo_description` |
 | SEOPress | `_seopress_titles_desc` |
-| (none active) | BRE outputs `<meta name="description">` itself |
+| (none active) | BreznGEO outputs `<meta name="description">` itself |
 
 **Token mode:** Either the full post content is sent (`full`) or it is trimmed to a configurable token count (100–8000) (`limit`). Trimming is handled by `TokenEstimator` — a word-based estimate without external libraries, using a ratio of ~0.75 words per token.
 
@@ -160,7 +160,7 @@ All labels (title, summary, key points, FAQ), the accent color, color scheme (au
 
 ### Schema.org Enhancer
 
-Outputs JSON-LD structured data and meta tags in `<head>`. Settings under **Bavarian Rank → Schema.org**. Each type is individually toggleable:
+Outputs JSON-LD structured data and meta tags in `<head>`. Settings under **BreznGEO → Schema.org**. Each type is individually toggleable:
 
 | Type | Schema.org Type | Notes |
 |---|---|---|
@@ -207,13 +207,13 @@ Serves `/llms.txt` and paginated follow-up files (`/llms-2.txt`, `/llms-3.txt` �
 - `Cache-Control: public, max-age=3600`
 - Transient cache is automatically invalidated on every settings change
 
-**Rank Math conflict notice:** If Rank Math also wants to serve an llms.txt, BRE shows an admin notice — BRE takes precedence automatically due to priority 1.
+**Rank Math conflict notice:** If Rank Math also wants to serve an llms.txt, BreznGEO shows an admin notice — BreznGEO takes precedence automatically due to priority 1.
 
 ---
 
 ### robots.txt Manager
 
-Appends `Disallow` blocks via the WordPress filter `robots_txt` — WordPress's own robots.txt is preserved; BRE only extends it.
+Appends `Disallow` blocks via the WordPress filter `robots_txt` — WordPress's own robots.txt is preserved; BreznGEO only extends it.
 
 Supported AI bots (all individually toggleable):
 
@@ -358,7 +358,7 @@ Results are cached for 1 hour in the transient cache (`bre_link_analysis`).
 Plaintext key  →  XOR(key, sha256(AUTH_KEY . SECURE_AUTH_KEY))  →  base64  →  "bre1:<base64>"
 ```
 
-`BavarianRankEngine\Helpers\KeyVault` obfuscates API keys before writing to `wp_options`:
+`BreznGEO\Helpers\KeyVault` obfuscates API keys before writing to `wp_options`:
 
 1. A 64-byte salt is derived from the WordPress constants `AUTH_KEY` and `SECURE_AUTH_KEY` via `hash('sha256', ...)`.
 2. The plaintext is XOR'd byte-by-byte (salt is repeated as needed).
@@ -405,7 +405,7 @@ The crawler log stores IP addresses exclusively as SHA-256 hashes. The original 
 
 ## AI Providers
 
-BRE supports four providers, all implementing the same `ProviderInterface`:
+BreznGEO supports four providers, all implementing the same `ProviderInterface`:
 
 | Provider | Class | API Base URL |
 |---|---|---|
@@ -418,7 +418,7 @@ BRE supports four providers, all implementing the same `ProviderInterface`:
 
 ```php
 // includes/Providers/YourProvider.php
-namespace BavarianRankEngine\Providers;
+namespace BreznGEO\Providers;
 
 class YourProvider implements ProviderInterface {
     public function getId(): string    { return 'yourprovider'; }
@@ -503,18 +503,18 @@ All endpoints are exclusively accessible to logged-in users with `manage_options
 ## Installation
 
 **Via GitHub Release (recommended):**
-1. Download `bavarian-rank-engine.zip` from the [latest release](https://github.com/noschmarrn/bavarianrankengine/releases/latest)
+1. Download `brezngeo.zip` from the [latest release](https://github.com/noschmarrn/brezngeo/releases/latest)
 2. In WordPress go to *Plugins → Add New → Upload Plugin*
 
 **Manual (clone):**
 ```bash
 cd /path/to/wordpress/wp-content/plugins/
-git clone https://github.com/noschmarrn/bavarianrankengine.git bavarian-rank-engine
-wp plugin activate bavarian-rank-engine
+git clone https://github.com/noschmarrn/brezngeo.git brezngeo
+wp plugin activate brezngeo
 ```
 
 **After activation:**
-1. Go to *Bavarian Rank → AI Provider*, select your provider and enter your API key
+1. Go to *BreznGEO → AI Provider*, select your provider and enter your API key
 2. Run the connection test
 3. Go to *Meta Generator*, enable auto mode and select post types
 
@@ -527,12 +527,12 @@ The plugin has no JavaScript build step. All assets under `assets/` are direct J
 | Component | Technology |
 |---|---|
 | Backend | PHP 8.0+, WordPress Plugin API |
-| Namespace | `BavarianRankEngine\` |
+| Namespace | `BreznGEO\` |
 | Architecture | Singleton core, registry pattern (providers), feature classes with `register()` |
 | Database | WordPress Options API, `wpdb` (custom table for CrawlerLog) |
 | Caching | WordPress transients (llms.txt, link analysis, bulk lock) |
 | Frontend | Vanilla JS + jQuery (WordPress-bundled), no build step |
-| i18n | `.pot` file, text domain `bavarian-rank-engine` |
+| i18n | `.pot` file, text domain `brezngeo` |
 | Tests | PHPUnit (102 tests, 216 assertions) |
 | Coding standard | WordPress PHPCS |
 | License | GPL-2.0-or-later |

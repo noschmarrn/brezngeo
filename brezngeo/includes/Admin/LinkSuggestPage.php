@@ -38,11 +38,11 @@ class LinkSuggestPage {
 		);
 
 		// link-suggest.js enthält den Post-Such-Code für Exclude/Boost.
-		// Minimales bavrankLinkSuggest-Objekt — reicht damit der Such-Block läuft.
+		// Minimales brezngeoLinkSuggest-Objekt — reicht damit der Such-Block läuft.
 		wp_enqueue_script( 'brezngeo-link-suggest', BREZNGEO_URL . 'assets/link-suggest.js', array( 'jquery' ), BREZNGEO_VERSION, true );
 		wp_localize_script(
 			'brezngeo-link-suggest',
-			'bavrankLinkSuggest',
+			'brezngeoLinkSuggest',
 			array(
 				'ajaxUrl'   => admin_url( 'admin-ajax.php' ),
 				'restUrl'   => get_rest_url( null, 'wp/v2/search' ),

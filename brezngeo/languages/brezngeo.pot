@@ -2,7 +2,7 @@
 # This file is distributed under the GPL-2.0-or-later license.
 msgid ""
 msgstr ""
-"Project-Id-Version: Bavarian Rank Engine 1.0.0\n"
+"Project-Id-Version: BreznGEO 1.0.0\n"
 "Report-Msgid-Bugs-To: https://donau2space.de\n"
 "POT-Creation-Date: 2026-02-21T00:00:00+00:00\n"
 "MIME-Version: 1.0\n"
@@ -12,14 +12,14 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: Manual\n"
-"X-Domain: bavarian-rank-engine\n"
+"X-Domain: brezngeo\n"
 
 #: includes/Admin/AdminMenu.php:11
-msgid "Bavarian Rank Engine"
+msgid "BreznGEO"
 msgstr ""
 
 #: includes/Admin/AdminMenu.php:12
-msgid "Bavarian Rank"
+msgid "BreznGEO"
 msgstr ""
 
 #: includes/Admin/AdminMenu.php:23
@@ -56,7 +56,7 @@ msgid "robots.txt"
 msgstr ""
 
 #: includes/Admin/views/dashboard.php:3
-msgid "Bavarian Rank Engine \xe2\x80\x94 Dashboard"
+msgid "BreznGEO \xe2\x80\x94 Dashboard"
 msgstr ""
 
 #: includes/Admin/views/dashboard.php:8
@@ -397,7 +397,7 @@ msgid "Aktuelle robots.txt ansehen \xe2\x86\x92"
 msgstr ""
 
 #: includes/Admin/MetaEditorBox.php:20
-msgid "Meta Description (BRE)"
+msgid "Meta Description (BreznGEO)"
 msgstr ""
 
 #: includes/Admin/MetaEditorBox.php:34
@@ -421,7 +421,7 @@ msgid "Mit KI neu generieren"
 msgstr ""
 
 #: includes/Admin/SeoWidget.php:16
-msgid "SEO Analyse (BRE)"
+msgid "SEO Analyse (BreznGEO)"
 msgstr ""
 
 #: includes/Admin/SeoWidget.php:31
@@ -491,7 +491,7 @@ msgid "Ein Bulk-Prozess l\xc3\xa4uft bereits."
 msgstr ""
 
 #: includes/Features/LlmsTxt.php:31
-msgid "Bavarian Rank Engine bedient llms.txt mit Priorit\xc3\xa4t \xe2\x80\x94 kein Handlungsbedarf bei Rank Math."
+msgid "BreznGEO bedient llms.txt mit Priorit\xc3\xa4t \xe2\x80\x94 kein Handlungsbedarf bei Rank Math."
 msgstr ""
 
 #: includes/Admin/AdminMenu.php
@@ -579,7 +579,7 @@ msgid "Apply (0 links)"
 msgstr ""
 
 #: includes/Features/LinkSuggest.php
-msgid "Internal Link Suggestions (BRE)"
+msgid "Internal Link Suggestions (BreznGEO)"
 msgstr ""
 
 msgid "Analysing…"

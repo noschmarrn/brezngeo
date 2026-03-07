@@ -48,7 +48,7 @@ class GeoPage {
 		$clean['output_style'] = in_array( $input['output_style'] ?? '', $allowed_styles, true )
 			? $input['output_style'] : 'details_collapsible';
 
-		$allowed_themes = array( 'light', 'dark', 'minimal', 'bavarian' );
+		$allowed_themes = array( 'light', 'dark', 'minimal', 'brezn' );
 		$clean['theme'] = in_array( $input['theme'] ?? '', $allowed_themes, true )
 			? $input['theme'] : 'light';
 

@@ -392,7 +392,7 @@ class LinkSuggest {
 		global $post;
 		wp_localize_script(
 			'brezngeo-link-suggest',
-			'bavrankLinkSuggest',
+			'brezngeoLinkSuggest',
 			array(
 				'nonce'       => wp_create_nonce( 'brezngeo_admin' ),
 				'ajaxUrl'     => admin_url( 'admin-ajax.php' ),

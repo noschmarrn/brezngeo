@@ -1,9 +1,9 @@
-# English (en_US) translation for Bavarian Rank Engine
+# English (en_US) translation for BreznGEO
 # Copyright (C) 2025 Donau2Space
 # This file is distributed under the GPL-2.0-or-later license.
 msgid ""
 msgstr ""
-"Project-Id-Version: Bavarian Rank Engine 1.0.0\n"
+"Project-Id-Version: BreznGEO 1.0.0\n"
 "Report-Msgid-Bugs-To: https://donau2space.de\n"
 "POT-Creation-Date: 2026-02-21T00:00:00+00:00\n"
 "PO-Revision-Date: 2026-02-21T00:00:00+00:00\n"
@@ -15,15 +15,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Manual\n"
-"X-Domain: bavarian-rank-engine\n"
+"X-Domain: brezngeo\n"
 
 #: includes/Admin/AdminMenu.php:11
-msgid "Bavarian Rank Engine"
-msgstr "Bavarian Rank Engine"
+msgid "BreznGEO"
+msgstr "BreznGEO"
 
 #: includes/Admin/AdminMenu.php:12
-msgid "Bavarian Rank"
-msgstr "Bavarian Rank"
+msgid "BreznGEO"
+msgstr "BreznGEO"
 
 #: includes/Admin/AdminMenu.php:23
 #: includes/Admin/AdminMenu.php:24
@@ -55,8 +55,8 @@ msgid "TXT Files"
 msgstr "TXT Files"
 
 #: includes/Admin/views/dashboard.php:3
-msgid "Bavarian Rank Engine \xe2\x80\x94 Dashboard"
-msgstr "Bavarian Rank Engine \xe2\x80\x94 Dashboard"
+msgid "BreznGEO \xe2\x80\x94 Dashboard"
+msgstr "BreznGEO \xe2\x80\x94 Dashboard"
 
 #: includes/Admin/views/dashboard.php:8
 msgid "Meta Coverage"
@@ -406,8 +406,8 @@ msgid "Save robots.txt Settings"
 msgstr "Save robots.txt Settings"
 
 #: includes/Admin/MetaEditorBox.php:20
-msgid "Meta Description (BRE)"
-msgstr "Meta Description (BRE)"
+msgid "Meta Description (BreznGEO)"
+msgstr "Meta Description (BreznGEO)"
 
 #: includes/Admin/MetaEditorBox.php:34
 msgid "KI generiert"
@@ -430,8 +430,8 @@ msgid "Mit KI neu generieren"
 msgstr "Regenerate with AI"
 
 #: includes/Admin/SeoWidget.php:16
-msgid "SEO Analyse (BRE)"
-msgstr "SEO Analysis (BRE)"
+msgid "SEO Analyse (BreznGEO)"
+msgstr "SEO Analysis (BreznGEO)"
 
 #: includes/Admin/SeoWidget.php:31
 msgid "Titel:"
@@ -500,8 +500,8 @@ msgid "Ein Bulk-Prozess l\xc3\xa4uft bereits."
 msgstr "A bulk process is already running."
 
 #: includes/Features/LlmsTxt.php:31
-msgid "Bavarian Rank Engine bedient llms.txt mit Priorit\xc3\xa4t \xe2\x80\x94 kein Handlungsbedarf bei Rank Math."
-msgstr "Bavarian Rank Engine serves llms.txt with priority \xe2\x80\x94 no action needed for Rank Math."
+msgid "BreznGEO bedient llms.txt mit Priorit\xc3\xa4t \xe2\x80\x94 kein Handlungsbedarf bei Rank Math."
+msgstr "BreznGEO serves llms.txt with priority \xe2\x80\x94 no action needed for Rank Math."
 
 #: includes/Admin/AdminMenu.php
 msgid "Link Suggestions"
@@ -585,8 +585,8 @@ msgid "Apply (0 links)"
 msgstr "Apply (0 links)"
 
 #: includes/Features/LinkSuggest.php
-msgid "Internal Link Suggestions (BRE)"
-msgstr "Internal Link Suggestions (BRE)"
+msgid "Internal Link Suggestions (BreznGEO)"
+msgstr "Internal Link Suggestions (BreznGEO)"
 
 msgid "Analysing…"
 msgstr "Analysing…"

@@ -1,4 +1,4 @@
-# Bavarian Rank Engine
+# BreznGEO
 
 ![PHP 8.0+](https://img.shields.io/badge/PHP-8.0%2B-blue)
 ![WordPress 6.0+](https://img.shields.io/badge/WordPress-6.0%2B-21759b)
@@ -8,11 +8,11 @@
 
 🇬🇧 [English version → README.md](README.md)
 
-**Website:** [bavarianrankengine.com](https://bavarianrankengine.com) &nbsp;·&nbsp; [How To](https://bavarianrankengine.com/howto.html) &nbsp;·&nbsp; [FAQ](https://bavarianrankengine.com/faq.html) &nbsp;·&nbsp; [Changelog](https://bavarianrankengine.com/changelog.html)
+**Website:** [brezngeo.com](https://brezngeo.com) &nbsp;·&nbsp; [How To](https://brezngeo.com/howto.html) &nbsp;·&nbsp; [FAQ](https://brezngeo.com/faq.html) &nbsp;·&nbsp; [Changelog](https://brezngeo.com/changelog.html)
 
 ---
 
-Bavarian Rank Engine ist ein schlankes SEO- & GEO-Plugin für WordPress. Es generiert KI-Metabeschreibungen, gibt Schema.org-Strukturdaten aus, erstellt GEO-Inhaltsblöcke für KI-Engines und verwaltet den Crawler-Zugriff über robots.txt und llms.txt — alles in einem Plugin, ohne dass etwas hinter einer Paywall versteckt wird.
+BreznGEO ist ein schlankes SEO- & GEO-Plugin für WordPress. Es generiert KI-Metabeschreibungen, gibt Schema.org-Strukturdaten aus, erstellt GEO-Inhaltsblöcke für KI-Engines und verwaltet den Crawler-Zugriff über robots.txt und llms.txt — alles in einem Plugin, ohne dass etwas hinter einer Paywall versteckt wird.
 
 Es funktioniert mit oder ohne KI-Key. Es integriert sich ohne Konflikte in Rank Math, Yoast, AIOSEO und SEOPress. Kein SaaS. Keine Telemetrie. Keine Upsells.
 
@@ -24,12 +24,12 @@ Die meisten WordPress-SEO-Plugins haben sich in die gleiche Richtung entwickelt:
 
 Die KI-Welle hat es schlimmer gemacht. Plugins fingen an, „KI-gestützte" Features anzubieten — aber als Proxy-Dienst. Man zahlt eine monatliche Gebühr, die Inhalte werden über deren Server geleitet, sie rufen die KI-API im eigenen Namen auf und schlagen eine Marge drauf.
 
-BRE verfolgt einen anderen Ansatz:
+BreznGEO verfolgt einen anderen Ansatz:
 
-- **Direkter API-Zugriff.** Du hinterlegst deinen eigenen Key von OpenAI, Anthropic, Google oder xAI. BRE ruft die API direkt auf. Kein Mittelsmann, keine Marge, keine Daten über Server Dritter.
+- **Direkter API-Zugriff.** Du hinterlegst deinen eigenen Key von OpenAI, Anthropic, Google oder xAI. BreznGEO ruft die API direkt auf. Kein Mittelsmann, keine Marge, keine Daten über Server Dritter.
 - **Klarer Output, kein Lärm.** Metabeschreibungen, Strukturdaten, KI-Inhaltsblöcke für GEO, Bot-Steuerung. Keine Lesbarkeits-Scores, keine Keyword-Dichte-Meter, keine Upsell-Banner.
 - **Keine Subscription.** GPL-2.0. Kostenlos auf beliebig vielen Sites nutzbar. Die einzigen Kosten sind die API-Nutzung — typischerweise Bruchteile eines Cents pro Beitrag.
-- **Keine Telemetrie.** BRE sendet keine Daten nach Hause. Kein Usage-Tracking, kein Remote-Logging, keine Analytics, die den eigenen Server verlassen.
+- **Keine Telemetrie.** BreznGEO sendet keine Daten nach Hause. Kein Usage-Tracking, kein Remote-Logging, keine Analytics, die den eigenen Server verlassen.
 - **Funktioniert ohne KI.** Kein API-Key? Der Fallback-Extraktor erzeugt eine brauchbare Metabeschreibung aus dem Artikelinhalt per Satzgrenzenerkennung. Jeder Beitrag bekommt eine Beschreibung.
 
 Entwickelt in Passau, Bayern — für [Donau2Space](https://donau2space.de), einen persönlichen KI-Blog, für den ich genau das gebraucht habe — und nichts mehr.
@@ -55,8 +55,8 @@ Entwickelt in Passau, Bayern — für [Donau2Space](https://donau2space.de), ein
 ## Verzeichnisstruktur
 
 ```
-bavarian-rank-engine/
-├── bavarian-rank-engine.php      # Plugin-Header, Konstanten (BRE_VERSION, BRE_DIR, BRE_URL)
+brezngeo/
+├── brezngeo.php      # Plugin-Header, Konstanten (BRE_VERSION, BRE_DIR, BRE_URL)
 ├── uninstall.php                 # Aufräumen bei Plugin-Löschung
 ├── assets/
 │   ├── admin.css                 # Gemeinsames Admin-Stylesheet
@@ -126,7 +126,7 @@ Generiert SEO-optimierte Meta-Beschreibungen (150–160 Zeichen) automatisch bei
 | Yoast SEO | `_yoast_wpseo_metadesc` |
 | AIOSEO | `_aioseo_description` |
 | SEOPress | `_seopress_titles_desc` |
-| (keins aktiv) | BRE gibt `<meta name="description">` selbst aus |
+| (keins aktiv) | BreznGEO gibt `<meta name="description">` selbst aus |
 
 **Token-Modus:** Wahlweise wird der gesamte Artikelinhalt gesendet (`full`) oder auf eine konfigurierbare Token-Anzahl (100–8000) gekürzt (`limit`). Das Kürzen erfolgt über `TokenEstimator` — eine wortbasierte Schätzung ohne externe Bibliothek.
 
@@ -158,7 +158,7 @@ Alle Labels, Akzentfarbe, Farbschema (Auto/Hell/Dunkel) und Custom CSS sind übe
 
 ### Schema.org Enhancer
 
-Gibt JSON-LD-Strukturdaten und Meta-Tags in `<head>` aus. Einstellungen unter **Bavarian Rank → Schema.org**. Jeder Typ ist einzeln aktivierbar:
+Gibt JSON-LD-Strukturdaten und Meta-Tags in `<head>` aus. Einstellungen unter **BreznGEO → Schema.org**. Jeder Typ ist einzeln aktivierbar:
 
 | Typ | Schema.org-Type | Hinweis |
 |---|---|---|
@@ -185,7 +185,7 @@ Bedient `/llms.txt` und paginierte Folgedateien über einen `parse_request`-Hook
 
 **HTTP-Caching:** ETag, Last-Modified, Cache-Control. Transient-Cache wird bei jeder Einstellungsänderung automatisch invalidiert.
 
-**Rank Math Konfliktwarnung:** Falls Rank Math ebenfalls eine llms.txt ausliefern will, zeigt BRE einen Admin-Hinweis an — BRE hat wegen Priorität 1 automatisch Vorrang.
+**Rank Math Konfliktwarnung:** Falls Rank Math ebenfalls eine llms.txt ausliefern will, zeigt BreznGEO einen Admin-Hinweis an — BreznGEO hat wegen Priorität 1 automatisch Vorrang.
 
 ---
 
@@ -349,18 +349,18 @@ Alle Endpunkte erfordern `manage_options` (kein `nopriv`).
 ## Installation
 
 **Via GitHub Release (empfohlen):**
-1. `bavarian-rank-engine.zip` vom [neuesten Release](https://github.com/noschmarrn/bavarianrankengine/releases/latest) herunterladen
+1. `brezngeo.zip` vom [neuesten Release](https://github.com/noschmarrn/brezngeo/releases/latest) herunterladen
 2. In WordPress unter *Plugins → Installieren → Plugin hochladen* einspielen
 
 **Manuell (clone):**
 ```bash
 cd /path/to/wordpress/wp-content/plugins/
-git clone https://github.com/noschmarrn/bavarianrankengine.git bavarian-rank-engine
-wp plugin activate bavarian-rank-engine
+git clone https://github.com/noschmarrn/brezngeo.git brezngeo
+wp plugin activate brezngeo
 ```
 
 **Nach der Aktivierung:**
-1. *Bavarian Rank → AI Provider* — Provider wählen, API-Key hinterlegen, Verbindungstest
+1. *BreznGEO → AI Provider* — Provider wählen, API-Key hinterlegen, Verbindungstest
 2. *Meta Generator* — Auto-Modus aktivieren, Post-Types auswählen
 
 Kein JavaScript-Build-Step. Alle Assets unter `assets/` sind direkte JS/CSS-Dateien.
@@ -372,12 +372,12 @@ Kein JavaScript-Build-Step. Alle Assets unter `assets/` sind direkte JS/CSS-Date
 | Komponente | Technologie |
 |---|---|
 | Backend | PHP 8.0+, WordPress Plugin API |
-| Namespace | `BavarianRankEngine\` |
+| Namespace | `BreznGEO\` |
 | Architektur | Singleton-Core, Registry-Pattern (Provider), Feature-Klassen mit `register()` |
 | Datenbank | WordPress Options API, `wpdb` (eigene Tabelle für CrawlerLog) |
 | Caching | WordPress Transients |
 | Frontend | Vanilla JS + jQuery (WordPress-integriert), kein Build-Step |
-| I18n | `.pot`-File, Text-Domain `bavarian-rank-engine` |
+| I18n | `.pot`-File, Text-Domain `brezngeo` |
 | Tests | PHPUnit (102 Tests, 216 Assertions) |
 | Coding Standard | WordPress PHPCS |
 | Lizenz | GPL-2.0-or-later |

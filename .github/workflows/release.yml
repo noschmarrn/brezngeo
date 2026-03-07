@@ -22,11 +22,11 @@ jobs:
           echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
 
       - name: Create ZIP
-        run: zip -r bavarian-rank-engine.zip bavarian-rank-engine/
+        run: zip -r brezngeo.zip brezngeo/
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          name: "Bavarian Rank Engine v${{ steps.version.outputs.version }}"
-          files: bavarian-rank-engine.zip
+          name: "BreznGEO v${{ steps.version.outputs.version }}"
+          files: brezngeo.zip
           generate_release_notes: true

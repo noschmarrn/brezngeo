@@ -1,9 +1,9 @@
-=== Bavarian Rank Engine ===
+=== BreznGEO ===
 Contributors: mifupadev
 Tags: seo, ai, meta description, schema, llms.txt
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 1.3.5
+Stable tag: 1.0.0
 Requires PHP: 8.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -12,7 +12,7 @@ AI meta descriptions, GEO blocks, internal link suggestions, Schema.org structur
 
 == Description ==
 
-Bavarian Rank Engine is a WordPress SEO plugin that automates AI meta descriptions, adds Schema.org structured data, and helps your content get discovered by AI-driven search. It covers GEO — Generative Engine Optimization — preparing your pages for AI overviews, answer engines, and retrieval-augmented search alongside traditional search engine optimization. No subscription required.
+BreznGEO is a WordPress SEO plugin that automates AI meta descriptions, adds Schema.org structured data, and helps your content get discovered by AI-driven search. It covers GEO — Generative Engine Optimization — preparing your pages for AI overviews, answer engines, and retrieval-augmented search alongside traditional search engine optimization. No subscription required.
 
 The plugin was originally built for Donau2Space.de and has run on the developer's own production sites since version 1.0. Stability is the priority: when something breaks, it affects the developer first. There are no upsells, no subscription tiers, and no features added just to expand the feature list. It works as a focused complement to your existing SEO setup — not a replacement.
 
@@ -20,9 +20,9 @@ All AI features are optional. Without an API key, the plugin falls back to local
 
 = Learn more =
 
-* Website: https://bavarianrankengine.com/
-* FAQ: https://bavarianrankengine.com/faq.html
-* Live demo: https://bavarianrankengine.com/demo.html
+* Website: https://brezngeo.com/
+* FAQ: https://brezngeo.com/faq.html
+* Live demo: https://brezngeo.com/demo.html
 
 = At a glance =
 
@@ -36,7 +36,7 @@ All AI features are optional. Without an API key, the plugin falls back to local
 * Logs AI bot visits with hashed IPs — no plain text stored
 * Free. No subscription. API costs go directly to your provider.
 
-= What makes Bavarian Rank Engine different =
+= What makes BreznGEO different =
 
 * **AI is optional.** No API key means no AI and no costs. All non-AI features — Schema.org, llms.txt, internal link suggestions, and fallback meta extraction — continue to work normally.
 * **No subscription.** The plugin is free. If you use AI generation, costs go directly to your chosen provider. There is no service fee or middle layer.
@@ -54,7 +54,7 @@ If no API key is configured or the AI request fails, a clean fallback excerpt is
 
 Adds an AI-generated Quick Overview block to each post: a short summary, key bullet points, and an optional FAQ. Rendered as a native `<details>` element — configurable as collapsible (default), always open, or stored without frontend output.
 
-Supports three generation modes: automatic on publish, hybrid (auto only when fields are empty), or manual. Insertion position is configurable: after the first paragraph (default), top, or bottom. A quality gate suppresses FAQ generation on posts below a configurable word-count threshold. The post editor meta box includes live generate and clear buttons, a per-post enable toggle, and an optional prompt add-on field for author-level customization. Four built-in themes: Light, Dark, Minimal, Bavarian.
+Supports three generation modes: automatic on publish, hybrid (auto only when fields are empty), or manual. Insertion position is configurable: after the first paragraph (default), top, or bottom. A quality gate suppresses FAQ generation on posts below a configurable word-count threshold. The post editor meta box includes live generate and clear buttons, a per-post enable toggle, and an optional prompt add-on field for author-level customization. Four built-in themes: Light, Dark, Minimal, Brezn.
 
 = Internal Link Suggestions =
 
@@ -118,12 +118,12 @@ Works standalone or alongside any major SEO plugin. When Rank Math, Yoast SEO, A
 
 1. Download the plugin zip and go to **Plugins → Add New → Upload Plugin** in your WordPress admin.
 2. Upload the zip file and click **Install Now**, then **Activate**.
-3. Go to **Bavarian Rank → AI Provider**.
+3. Go to **BreznGEO → AI Provider**.
 4. Select your preferred AI provider, paste your API key, and click **Test connection**.
 5. Choose a model and optionally enter token costs for cost estimation.
-6. Go to **Bavarian Rank → Meta Generator** to select post types and configure Schema.org types.
-7. To serve a content index, go to **Bavarian Rank → llms.txt**, enable it, and save.
-8. To manage AI crawler access, go to **Bavarian Rank → robots.txt** and select the bots to block.
+6. Go to **BreznGEO → Meta Generator** to select post types and configure Schema.org types.
+7. To serve a content index, go to **BreznGEO → llms.txt**, enable it, and save.
+8. To manage AI crawler access, go to **BreznGEO → robots.txt** and select the bots to block.
 
 The plugin works without an API key — fallback meta extraction runs automatically on publish.
 
@@ -147,7 +147,7 @@ Keys are obfuscated using XOR encryption with a key derived from your WordPress 
 
 = Is this compatible with Rank Math / Yoast SEO / AIOSEO / SEOPress? =
 
-Yes. When one of these plugins is active, Bavarian Rank Engine writes generated descriptions directly into that plugin's meta field. It also checks for existing descriptions from all four plugins before generating, and skips posts that already have one. Breadcrumb and standalone meta description output is suppressed automatically to avoid conflicts.
+Yes. When one of these plugins is active, BreznGEO writes generated descriptions directly into that plugin's meta field. It also checks for existing descriptions from all four plugins before generating, and skips posts that already have one. Breadcrumb and standalone meta description output is suppressed automatically to avoid conflicts.
 
 = Does it work with Polylang or WPML? =
 
@@ -218,86 +218,8 @@ No data is transmitted during normal page loads or to visitors.
 
 == Changelog ==
 
-= 1.3.5 =
-* Changed: Admin footer updated across all plugin pages — "developed by 🍺 noschmarrn.dev for Donau2Space.de" with links to both sites
-* Fix: German translations added for the AI Features dashboard section — heading, intro text, feature descriptions, and submit button were displayed in English on German WordPress installations
-* Docs: readme.txt restructured for WordPress.org — paragraph order corrected, "At a glance" promoted to proper section heading, tag list trimmed to five
-
-= 1.3.4 =
-* New: Four built-in GEO block themes — Light, Dark, Minimal, Bavarian
-* Changed: Replaced Color Scheme / Load Minimal CSS controls with a single Theme selector
-* Removed: Custom CSS field (use your theme&#39;s stylesheet for custom styling)
-* Removed: Auto OS dark/light detection (select Dark theme explicitly for dark-mode sites)
-
-= 1.3.3 =
-* Security: GeoBlock custom CSS is now sanitised through a dedicated parser — strips comments, blocks at-rules (@import, @media etc.), expression(), javascript: and url() to prevent CSS injection
-* Fix: GeoBlock inline style previously used esc_attr() on CSS content (corrupts quotes/ampersands); replaced with wp_strip_all_tags()-based sanitiser
-* Fix: Uniform brezngeo_ prefix applied throughout — JS localized objects, test bootstrap constants, and a KeyVault doc comment updated
-* Fix: SchemaEnhancer JSON-LD output no longer passes JSON_UNESCAPED_SLASHES to wp_json_encode()
-* Fix: GeoBlock settings help text now explicitly describes the CSS input policy (declarations only, url() blocked)
-
-= 1.3.2 =
-* Fix: Schema.org structured data now correctly reads the AI-generated meta description — it was silently falling back to the post excerpt due to a renamed post meta key
-* Fix: Dashboard usage-stats transient key typo corrected (no functional impact for most users)
-* Internal: All plugin identifiers (option keys, AJAX actions, post meta, transients) renamed to brezngeo_ prefix for WordPress.org compliance
-
-= 1.3.1 =
-* Improved: Internal Link Suggestions now match by topic (title + tags + categories + excerpt) — anchor phrases are found even when the target post title does not appear verbatim in the content
-* New: Post excerpt included in candidate scoring (weight ×1.5) for better semantic relevance
-* New: Dashboard "AI Features" card — opt-in AI toggle per feature (Meta Descriptions, Link Suggestions, GEO Block); only visible when an AI provider is connected; all options disabled by default
-* Fix: Post search in Link Suggestions settings (Exclude / Boost) was broken — wrong REST API URL and missing script on settings page
-* Fix: Plugin Check — translators comment position in bulk.php, NonPrefixedVariable warnings in link-suggest-settings.php and txt.php
-
-= 1.3.0 =
-* New: Internal Link Suggestions — editor meta box suggests "phrase → target post" links while writing; manual review + multi-select apply with preview modal
-* New: Suggestions use text-based matching (title/tag/category overlap) — works without AI
-* New: Optional AI upgrade: top-20 candidates sent to connected AI provider for semantic analysis
-* New: Configurable trigger: manual button, on-save, or timed interval
-* New: Link Suggestions settings page: exclude posts (Impressum, Kontakt, AGB), boost/prioritise specific posts
-* New: Gutenberg and Classic Editor both supported for content reading and link insertion
-* New: Full localization (de_DE, en_US)
-
-= 1.2.4 =
-* Fix: AI generation is now disabled by default — users must explicitly enable it on the AI Provider page
-* Fix: Dashboard "Active Provider" now correctly shows "AI disabled" or "Not configured" when no API key is set
-* Fix: German strings removed from Schema.org admin page, Schema Metabox in Post Editor, and SEO Widget
-* New: Meta Generator and GEO Block pages show an info notice when no AI provider is active
-* New: Meta Generator prompt is now locale-aware — German WordPress installs get the German prompt, all others get English
-* New: "Theme outputs post title as H1" setting in Meta Generator — suppresses false H1 warning in the SEO Widget
-* Improved: SEO Widget strings (headings, warnings, links) are now fully translatable via WordPress i18n
-
-= 1.2.3 =
-* Improved: llms.txt and robots.txt admin pages merged into a single "TXT Files" page with native WordPress tab navigation
-
-= 1.2.2 =
-* New: Dismissible welcome notice with 24 h auto-expiry and Bavarian flavour
-* New: AI enable toggle with cost warning on AI Provider page
-* New: Estimated token usage and cost in Status widget
-* Improved: Dashboard UI — progress bars for meta coverage, styled quick links, crawler dot indicators
-* Fix: Plugin Check warnings (variable definitions in template moved to controller)
-* Fix: Hardcoded German strings in admin.js replaced with localized equivalents
-* Perf: 5-minute transient caching for dashboard DB queries
-
-= 1.2.1 =
-* New: Dedicated "Schema.org" admin menu item under Bavarian Rank — schema settings moved out of Meta Generator into their own page with a separate option key
-
-= 1.2.0 =
-* New: Schema Suite v2 — FAQPage (auto-generated from GEO Quick Overview data), BlogPosting/Article (with embedded author and featured image), ImageObject, and VideoObject (YouTube/Vimeo auto-detected from post content)
-* New: Post editor meta box for HowTo, Review (star rating 1–5), Recipe, and Event schema types — per-post data entry, saved as post meta, output as JSON-LD automatically
-
-= 1.1.0 =
-* New: GEO Schnellüberblick block — AI-generated per-post summary with short summary, key bullet points, and optional FAQ.
-* New: Rendered as a native `<details>` element; configurable as collapsible (default), always open, or store-only (no frontend output).
-* New: Three generation modes — auto on publish, hybrid (auto only when fields are empty), manual only.
-* New: Configurable insertion position: after first paragraph (default), top, or bottom of content.
-* New: Quality gate suppresses FAQ generation on posts below a configurable word-count threshold (default: 350).
-* New: Post editor meta box with live AJAX generate/clear buttons, per-post enable toggle, and auto-lock on manual edit.
-* New: Optional per-post prompt add-on field for author-level customization.
-* New: Dedicated admin settings page under Bavarian Rank → GEO Block.
-* New: Bundled minimal CSS scoped to `.bre-geo`; custom CSS field for theme-level overrides.
-
 = 1.0.0 =
-* Initial release.
+* Initial release as BreznGEO.
 * AI Meta Generator with auto-publish trigger, customizable prompt, and Polylang/WPML language detection.
 * Fallback meta extraction (sentence-boundary-aware, 150–160 characters) for use without an API key or on API failure.
 * Bulk Generator with batched AJAX processing, rate limiting, transient lock, per-post retry logic, and cost estimation.
@@ -307,17 +229,16 @@ No data is transmitted during normal page loads or to visitors.
 * llms.txt with pagination, ETag/Last-Modified HTTP caching, custom sections, and manual cache clear.
 * robots.txt manager for 13 known AI and data-harvesting crawlers.
 * Crawler Log database table with SHA-256 IP hashing and weekly auto-purge.
+* GEO Quick Overview block — AI-generated per-post summary, key bullet points, optional FAQ; four built-in themes (Light, Dark, Minimal, Brezn).
+* Internal Link Suggestions — editor meta box with text-based and optional AI-powered matching.
 * Meta Description meta box with source badge, character counter, and inline AI regeneration.
 * SEO Analysis sidebar widget with live content statistics and warnings.
 * Link Analysis dashboard panel: no-internal-links report, external-link outliers, pillar page ranking.
-* KeyVault API key obfuscation using XOR with WP salts (no OpenSSL dependency).
+* KeyVault API key obfuscation using XOR with WP salts.
 * Multi-provider support: OpenAI, Anthropic, Google Gemini, xAI Grok.
-* `bre_prompt` filter and `bre_meta_saved` action hooks for developers.
+* `brezngeo_prompt` filter and `brezngeo_meta_saved` action hooks for developers.
 
 == Upgrade Notice ==
 
-= 1.1.0 =
-No database changes. Deactivate and reactivate the plugin after updating to register the new GEO Block rewrite rules.
-
 = 1.0.0 =
-Initial release. No upgrade steps required.
+Initial release.

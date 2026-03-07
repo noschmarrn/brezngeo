@@ -46,8 +46,8 @@
 	padding: 0 0 0 0.75em;
 }
 
-/* ── Bavarian theme ───────────────────────────────────── */
-.brezngeo-geo[data-brezngeo-theme="bavarian"] {
+/* ── Brezn theme ───────────────────────────────────── */
+.brezngeo-geo[data-brezngeo-theme="brezn"] {
 	--brezngeo-border:    #0052a0;
 	--brezngeo-bg:        #f0f5fc;
 	--brezngeo-sec-border:#c5d8f5;
@@ -99,8 +99,8 @@
 	color: #aaa;
 }
 
-/* ── Bavarian summary: Rauten (diamond) pattern ───────── */
-.brezngeo-geo[data-brezngeo-theme="bavarian"] summary {
+/* ── Brezn summary: Rauten (diamond) pattern ───────── */
+.brezngeo-geo[data-brezngeo-theme="brezn"] summary {
 	background-color: #0066b3;
 	background-image:
 		linear-gradient(45deg,  rgba(255,255,255,0.18) 25%, transparent 25%),
@@ -114,11 +114,11 @@
 	border-radius: 5px 5px 0 0;
 }
 
-.brezngeo-geo[data-brezngeo-theme="bavarian"] summary .brezngeo-geo__title {
+.brezngeo-geo[data-brezngeo-theme="brezn"] summary .brezngeo-geo__title {
 	color: #fff;
 }
 
-.brezngeo-geo[data-brezngeo-theme="bavarian"] summary::before {
+.brezngeo-geo[data-brezngeo-theme="brezn"] summary::before {
 	color: rgba(255,255,255,0.85);
 }
 

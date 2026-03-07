@@ -1,10 +1,10 @@
-/* global jQuery, wp, bavrankLinkSuggest, tinyMCE */
+/* global jQuery, wp, brezngeoLinkSuggest, tinyMCE */
 ( function ( $ ) {
     'use strict';
 
-    if ( typeof bavrankLinkSuggest === 'undefined' ) { return; }
+    if ( typeof brezngeoLinkSuggest === 'undefined' ) { return; }
 
-    var cfg         = bavrankLinkSuggest;
+    var cfg         = brezngeoLinkSuggest;
     var i18n        = cfg.i18n;
     var suggestions = [];
     var isRunning   = false;
