@@ -198,9 +198,9 @@ class AdminMenu {
 
 		$post_types = $settings['meta_post_types'] ?? array( 'post', 'page' );
 		$meta_stats = $this->get_meta_stats( $post_types );
-		$bre_compat = $this->get_compat_info();
+		$brezngeo_compat = $this->get_compat_info();
 
-		$bre_show_welcome = $this->should_show_welcome();
+		$brezngeo_show_welcome = $this->should_show_welcome();
 
 		$usage_stats  = get_option(
 			'brezngeo_usage_stats',

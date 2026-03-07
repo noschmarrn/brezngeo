@@ -3,7 +3,7 @@
 ![PHP 8.0+](https://img.shields.io/badge/PHP-8.0%2B-blue)
 ![WordPress 6.0+](https://img.shields.io/badge/WordPress-6.0%2B-21759b)
 ![License: GPL-2.0](https://img.shields.io/badge/License-GPL--2.0--or--later-green)
-![Version](https://img.shields.io/badge/Version-1.3.5-orange)
+![Version](https://img.shields.io/badge/Version-1.0.0-orange)
 ![Tests](https://img.shields.io/badge/Tests-112%20passing-brightgreen)
 
 🇩🇪 [Deutsche Version → README.de.md](README.de.md)
@@ -56,7 +56,7 @@ Built in Passau, Bavaria — for [Donau2Space](https://donau2space.de), a person
 
 ```
 brezngeo/
-├── brezngeo.php      # Plugin header, constants (BRE_VERSION, BRE_DIR, BRE_URL)
+├── brezngeo.php      # Plugin header, constants (BREZNGEO_VERSION, BREZNGEO_DIR, BREZNGEO_URL)
 ├── uninstall.php                 # Cleanup on plugin deletion
 ├── assets/
 │   ├── admin.css                 # Shared admin stylesheet
@@ -64,7 +64,7 @@ brezngeo/
 │   ├── bulk.js                   # Bulk generator AJAX loop + progress UI
 │   ├── editor-meta.js            # Meta editor box: live counter, AI regen button
 │   ├── geo-editor.js             # GEO block editor: generate / clear button
-│   ├── geo-frontend.css          # Minimal stylesheet for .bre-geo on frontend
+│   ├── geo-frontend.css          # Minimal stylesheet for .brezngeo-geo on frontend
 │   ├── link-suggest.js           # Internal link suggestions: trigger, UI, apply (Gutenberg + Classic)
 │   └── seo-widget.js             # SEO analysis widget: live evaluation in editor
 ├── includes/
@@ -244,13 +244,13 @@ Batch processing of all published posts without a meta description. The process 
 - 6-second delay between batches (rate limiting against API limits)
 - Up to 3 attempts per post
 - Live progress log and running cost estimate in the admin UI
-- **Mutex lock via transient** (`bre_bulk_running`, TTL 15 minutes): prevents parallel runs across multiple browser tabs or admin users. The lock is set at start, automatically released after the last batch — or manually via button.
+- **Mutex lock via transient** (`brezngeo_bulk_running`, TTL 15 minutes): prevents parallel runs across multiple browser tabs or admin users. The lock is set at start, automatically released after the last batch — or manually via button.
 
 ---
 
 ### Crawler Log
 
-Logs visits from known AI bots in the dedicated database table `{prefix}bre_crawler_log`:
+Logs visits from known AI bots in the dedicated database table `{prefix}brezngeo_crawler_log`:
 
 | Column | Type | Content |
 |---|---|---|
@@ -261,7 +261,7 @@ Logs visits from known AI bots in the dedicated database table `{prefix}bre_craw
 
 **Why SHA-256 instead of plain-text IP?** The original IP is never stored. The hash satisfies the GDPR requirement of data minimization: bot patterns are identifiable (same hash = same IP), but tracing back to a person without the plain-text value is practically impossible.
 
-Entries older than 90 days are automatically cleaned up via weekly cron (`bre_cleanup_crawler_log`). The dashboard shows a 30-day summary per bot.
+Entries older than 90 days are automatically cleaned up via weekly cron (`brezngeo_cleanup_crawler_log`). The dashboard shows a 30-day summary per bot.
 
 ---
 
@@ -294,7 +294,7 @@ AJAX widget on the plugin dashboard:
 - Posts with an above-average number of external links
 - Top-5 pillar pages by number of incoming internal links
 
-Results are cached for 1 hour in the transient cache (`bre_link_analysis`).
+Results are cached for 1 hour in the transient cache (`brezngeo_link_analysis`).
 
 ---
 
@@ -304,14 +304,14 @@ Results are cached for 1 hour in the transient cache (`bre_link_analysis`).
 
 | Option Key | Content |
 |---|---|
-| `bre_settings` | Active provider, API keys (obfuscated), model selection, token costs, `ai_enabled` flag |
-| `bre_meta_settings` | Meta generator: auto mode, post types, token mode, prompt |
-| `bre_schema_settings` | Schema.org: enabled types, organization sameAs URLs |
-| `bre_geo_settings` | GEO block: mode, position, labels, CSS, prompt, color scheme |
-| `bre_robots_settings` | robots.txt: blocked bots |
-| `bre_llms_settings` | llms.txt: title, description, featured links, footer, page count |
-| `bre_usage_stats` | Accumulated token usage: `tokens_in`, `tokens_out`, `count` |
-| `bre_first_activated` | Unix timestamp of first activation (used by welcome notice) |
+| `brezngeo_settings` | Active provider, API keys (obfuscated), model selection, token costs, `ai_enabled` flag |
+| `brezngeo_meta_settings` | Meta generator: auto mode, post types, token mode, prompt |
+| `brezngeo_schema_settings` | Schema.org: enabled types, organization sameAs URLs |
+| `brezngeo_geo_settings` | GEO block: mode, position, labels, CSS, prompt, color scheme |
+| `brezngeo_robots_settings` | robots.txt: blocked bots |
+| `brezngeo_llms_settings` | llms.txt: title, description, featured links, footer, page count |
+| `brezngeo_usage_stats` | Accumulated token usage: `tokens_in`, `tokens_out`, `count` |
+| `brezngeo_first_activated` | Unix timestamp of first activation (used by welcome notice) |
 
 ### Post Meta (wp_postmeta)
 
@@ -328,25 +328,25 @@ Results are cached for 1 hour in the transient cache (`bre_link_analysis`).
 
 | Table | Purpose |
 |---|---|
-| `{prefix}bre_crawler_log` | AI bot visits (bot_name, ip_hash, url, visited_at) |
+| `{prefix}brezngeo_crawler_log` | AI bot visits (bot_name, ip_hash, url, visited_at) |
 
 ### Transients
 
 | Transient | TTL | Purpose |
 |---|---|---|
-| `bre_llms_cache_{n}` | 1 hour | Cached llms.txt content per page |
-| `bre_link_analysis` | 1 hour | Dashboard link analysis result |
-| `bre_bulk_running` | 15 minutes | Mutex lock for bulk generator |
-| `bre_meta_stats` | 5 minutes | Dashboard meta coverage query result |
-| `bre_crawler_summary` | 5 minutes | Dashboard crawler summary (last 30 days) |
+| `brezngeo_llms_cache_{n}` | 1 hour | Cached llms.txt content per page |
+| `brezngeo_link_analysis` | 1 hour | Dashboard link analysis result |
+| `brezngeo_bulk_running` | 15 minutes | Mutex lock for bulk generator |
+| `brezngeo_meta_stats` | 5 minutes | Dashboard meta coverage query result |
+| `brezngeo_crawler_summary` | 5 minutes | Dashboard crawler summary (last 30 days) |
 
 ### Uninstall cleanup
 
 `uninstall.php` removes on plugin deletion:
-- Option `bre_settings`
+- Option `brezngeo_settings`
 - Post meta `_bre_meta_description` for all posts
 
-> Note: The remaining option keys and the `bre_crawler_log` table are not automatically removed. For full cleanup, delete these manually.
+> Note: The remaining option keys and the `brezngeo_crawler_log` table are not automatically removed. For full cleanup, delete these manually.
 
 ---
 
@@ -369,10 +369,10 @@ Plaintext key  →  XOR(key, sha256(AUTH_KEY . SECURE_AUTH_KEY))  →  base64  �
 **Security boundary:** XOR with a static salt is obfuscation, not cryptographic encryption. An attacker with access to **both** the database **and** `wp-config.php` can reconstruct the key. For maximum security, keys can be defined as `wp-config.php` constants — these take precedence over the database version:
 
 ```php
-define( 'BRE_OPENAI_KEY',    'sk-...' );
-define( 'BRE_ANTHROPIC_KEY', 'sk-ant-...' );
-define( 'BRE_GEMINI_KEY',    'AI...' );
-define( 'BRE_GROK_KEY',      'xai-...' );
+define( 'BREZNGEO_OPENAI_KEY',    'sk-...' );
+define( 'BREZNGEO_ANTHROPIC_KEY', 'sk-ant-...' );
+define( 'BREZNGEO_GEMINI_KEY',    'AI...' );
+define( 'BREZNGEO_GROK_KEY',      'xai-...' );
 ```
 
 In the admin UI, keys are always displayed masked: `••••••Ab3c9` (only the last 5 characters visible).
@@ -382,13 +382,13 @@ In the admin UI, keys are always displayed masked: `••••••Ab3c9` (on
 Every AJAX handler follows the same pattern — without exception:
 
 ```php
-check_ajax_referer( 'bre_admin', 'nonce' );          // CSRF
+check_ajax_referer( 'brezngeo_admin', 'nonce' );          // CSRF
 if ( ! current_user_can( 'manage_options' ) ) {      // Authorization
     wp_send_json_error( 'Unauthorized', 403 );
 }
 ```
 
-The nonce `bre_admin` is passed to the frontend via `wp_localize_script` and validated server-side on every request. There are no `wp_ajax_nopriv_` handlers — all AJAX endpoints are exclusively accessible to logged-in users with `manage_options` capability.
+The nonce `brezngeo_admin` is passed to the frontend via `wp_localize_script` and validated server-side on every request. There are no `wp_ajax_nopriv_` handlers — all AJAX endpoints are exclusively accessible to logged-in users with `manage_options` capability.
 
 ### Input Validation and Output Escaping
 
@@ -447,23 +447,23 @@ The provider automatically appears in all admin dropdowns, the provider settings
 
 ## Hooks & Extensibility
 
-### `bre_prompt` (Filter)
+### `brezngeo_prompt` (Filter)
 
 Allows modifying the final prompt immediately before the API call.
 
 ```php
-add_filter( 'bre_prompt', function( string $prompt, WP_Post $post ): string {
+add_filter( 'brezngeo_prompt', function( string $prompt, WP_Post $post ): string {
     $keyword = get_post_meta( $post->ID, 'focus_keyword', true );
     return $keyword ? $prompt . "\nFocus keyword: {$keyword}" : $prompt;
 }, 10, 2 );
 ```
 
-### `bre_meta_saved` (Action)
+### `brezngeo_meta_saved` (Action)
 
 Fired after a meta description is successfully saved — both on automatic generation at publish and on manual regen in the editor.
 
 ```php
-add_action( 'bre_meta_saved', function( int $post_id, string $description ): void {
+add_action( 'brezngeo_meta_saved', function( int $post_id, string $description ): void {
     // e.g. sync with external system or cache invalidation
     my_cdn_purge( get_permalink( $post_id ) );
 }, 10, 2 );
@@ -472,7 +472,7 @@ add_action( 'bre_meta_saved', function( int $post_id, string $description ): voi
 ### Adding a New Feature
 
 1. Create `includes/Features/YourFeature.php` with a `register()` method that registers WordPress hooks.
-2. In `includes/Core.php` → `load_dependencies()`: `require_once BRE_DIR . 'includes/Features/YourFeature.php';`
+2. In `includes/Core.php` → `load_dependencies()`: `require_once BREZNGEO_DIR . 'includes/Features/YourFeature.php';`
 3. In `includes/Core.php` → `register_hooks()`: `( new Features\YourFeature() )->register();`
 
 ---
@@ -483,20 +483,20 @@ All endpoints are exclusively accessible to logged-in users with `manage_options
 
 | Action | Handler | Description |
 |---|---|---|
-| `bre_regen_meta` | `MetaEditorBox::ajax_regen` | Regenerate meta description for a single post |
-| `bre_test_connection` | `ProviderPage::ajax_test_connection` | Test API key and connection |
-| `bre_get_default_prompt` | `ProviderPage::ajax_get_default_prompt` | Reset to default prompt |
-| `bre_link_analysis` | `LinkAnalysis::ajax_analyse` | Run link analysis for the dashboard |
-| `bre_link_suggestions` | `LinkSuggest::ajax_suggest` | Return top-10 internal link suggestions for current post |
-| `bre_geo_generate` | `GeoEditorBox::ajax_generate` | Generate GEO block for a single post |
-| `bre_geo_clear` | `GeoEditorBox::ajax_clear` | Clear GEO block data for a single post |
-| `bre_llms_clear_cache` | `TxtPage::ajax_clear_cache` | Clear llms.txt transient cache |
-| `bre_dismiss_llms_notice` | `LlmsTxt::ajax_dismiss_notice` | Dismiss Rank Math conflict admin notice |
-| `bre_dismiss_welcome` | `AdminMenu::ajax_dismiss_welcome` | Dismiss the welcome notice per user |
-| `bre_bulk_generate` | `MetaGenerator::ajaxBulkGenerate` | Process next batch in bulk generator |
-| `bre_bulk_stats` | `MetaGenerator::ajaxBulkStats` | Retrieve progress and stats of running bulk |
-| `bre_bulk_release` | `MetaGenerator::ajaxBulkRelease` | Manually release bulk mutex lock |
-| `bre_bulk_status` | `MetaGenerator::ajaxBulkStatus` | Check bulk lock status |
+| `brezngeo_regen_meta` | `MetaEditorBox::ajax_regen` | Regenerate meta description for a single post |
+| `brezngeo_test_connection` | `ProviderPage::ajax_test_connection` | Test API key and connection |
+| `brezngeo_get_default_prompt` | `ProviderPage::ajax_get_default_prompt` | Reset to default prompt |
+| `brezngeo_link_analysis` | `LinkAnalysis::ajax_analyse` | Run link analysis for the dashboard |
+| `brezngeo_link_suggestions` | `LinkSuggest::ajax_suggest` | Return top-10 internal link suggestions for current post |
+| `brezngeo_geo_generate` | `GeoEditorBox::ajax_generate` | Generate GEO block for a single post |
+| `brezngeo_geo_clear` | `GeoEditorBox::ajax_clear` | Clear GEO block data for a single post |
+| `brezngeo_llms_clear_cache` | `TxtPage::ajax_clear_cache` | Clear llms.txt transient cache |
+| `brezngeo_dismiss_llms_notice` | `LlmsTxt::ajax_dismiss_notice` | Dismiss Rank Math conflict admin notice |
+| `brezngeo_dismiss_welcome` | `AdminMenu::ajax_dismiss_welcome` | Dismiss the welcome notice per user |
+| `brezngeo_bulk_generate` | `MetaGenerator::ajaxBulkGenerate` | Process next batch in bulk generator |
+| `brezngeo_bulk_stats` | `MetaGenerator::ajaxBulkStats` | Retrieve progress and stats of running bulk |
+| `brezngeo_bulk_release` | `MetaGenerator::ajaxBulkRelease` | Manually release bulk mutex lock |
+| `brezngeo_bulk_status` | `MetaGenerator::ajaxBulkStatus` | Check bulk lock status |
 
 ---
 

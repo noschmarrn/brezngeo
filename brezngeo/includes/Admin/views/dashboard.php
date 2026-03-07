@@ -3,7 +3,7 @@
 <div class="wrap brezngeo-settings">
 	<h1><?php esc_html_e( 'BreznGEO — Dashboard', 'brezngeo' ); ?></h1>
 
-<?php if ( $bre_show_welcome ) : ?>
+<?php if ( $brezngeo_show_welcome ) : ?>
 <div class="brezngeo-welcome-notice" id="brezngeo-welcome-notice">
 	<button type="button" class="brezngeo-dismiss" id="brezngeo-dismiss-welcome"
 			aria-label="<?php esc_attr_e( 'Dismiss', 'brezngeo' ); ?>">&#215;</button>
@@ -165,12 +165,12 @@
 		</div>
 		<?php endif; ?>
 
-		<?php if ( ! empty( $bre_compat ) ) : ?>
+		<?php if ( ! empty( $brezngeo_compat ) ) : ?>
 		<div class="postbox">
 			<div class="postbox-header"><h2><?php esc_html_e( 'Plugin Compatibility', 'brezngeo' ); ?></h2></div>
 			<div class="inside">
 				<p style="color:#666;margin-top:0;"><?php esc_html_e( 'The following SEO plugins were detected. BreznGEO adapts automatically.', 'brezngeo' ); ?></p>
-				<?php foreach ( $bre_compat as $plugin ) : ?>
+				<?php foreach ( $brezngeo_compat as $plugin ) : ?>
 				<p style="margin-bottom:4px;"><strong><?php echo esc_html( $plugin['name'] ); ?></strong></p>
 				<ul style="margin:0 0 12px 20px;">
 					<?php foreach ( $plugin['notes'] as $note ) : // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound ?>

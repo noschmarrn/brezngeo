@@ -443,7 +443,7 @@ class GeoBlock {
 			$style_attr = ' style="--brezngeo-accent:' . esc_attr( $accent ) . ';"';
 		}
 
-		return '<details class="brezngeo-geo" data-bre="geo"' . $open_attr . $theme_attr . $style_attr . '>'
+		return '<details class="brezngeo-geo" data-brezngeo="geo"' . $open_attr . $theme_attr . $style_attr . '>'
 			. '<summary><span class="brezngeo-geo__title">' . $title . '</span></summary>'
 			. $inner
 			. '</details>';

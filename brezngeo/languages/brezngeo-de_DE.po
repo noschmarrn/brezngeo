@@ -709,12 +709,12 @@ msgid "Load minimal CSS"
 msgstr "Minimal-CSS laden"
 
 #: includes/Admin/views/geo.php
-msgid "Load base stylesheet for .bre-geo on the frontend"
-msgstr "Basis-Stylesheet für .bre-geo auf dem Frontend laden"
+msgid "Load base stylesheet for .brezngeo-geo on the frontend"
+msgstr "Basis-Stylesheet für .brezngeo-geo auf dem Frontend laden"
 
 #: includes/Admin/views/geo.php
-msgid "Automatically scoped to .bre-geo{...}. Enter CSS property:value pairs only — selectors, at-rules (@media, @import etc.) and url() are blocked for security."
-msgstr "Wird automatisch auf .bre-geo{...} begrenzt. Nur CSS-Eigenschaft:Wert-Paare eingeben — Selektoren, At-Regeln (@media, @import usw.) und url() werden aus Sicherheitsgründen blockiert."
+msgid "Automatically scoped to .brezngeo-geo{...}. Enter CSS property:value pairs only — selectors, at-rules (@media, @import etc.) and url() are blocked for security."
+msgstr "Wird automatisch auf .brezngeo-geo{...} begrenzt. Nur CSS-Eigenschaft:Wert-Paare eingeben — Selektoren, At-Regeln (@media, @import usw.) und url() werden aus Sicherheitsgründen blockiert."
 
 #: includes/Admin/views/geo.php
 msgid "AI Prompt"

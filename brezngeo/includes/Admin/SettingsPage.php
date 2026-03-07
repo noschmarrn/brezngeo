@@ -46,7 +46,7 @@ class SettingsPage {
 		$saved_meta = get_option( self::OPTION_KEY_META, array() );
 		$saved_meta = is_array( $saved_meta ) ? $saved_meta : array();
 
-		// Schema has its own option key since v1.3.0; falls back to bre_meta_settings for existing installs.
+		// Schema has its own option key since v1.3.0; falls back to brezngeo_meta_settings for existing installs.
 		$saved_schema = get_option( self::OPTION_KEY_SCHEMA, array() );
 		$saved_schema = is_array( $saved_schema ) ? $saved_schema : array();
 

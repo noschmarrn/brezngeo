@@ -3,7 +3,7 @@
 ![PHP 8.0+](https://img.shields.io/badge/PHP-8.0%2B-blue)
 ![WordPress 6.0+](https://img.shields.io/badge/WordPress-6.0%2B-21759b)
 ![License: GPL-2.0](https://img.shields.io/badge/License-GPL--2.0--or--later-green)
-![Version](https://img.shields.io/badge/Version-1.3.5-orange)
+![Version](https://img.shields.io/badge/Version-1.0.0-orange)
 ![Tests](https://img.shields.io/badge/Tests-112%20passing-brightgreen)
 
 🇬🇧 [English version → README.md](README.md)
@@ -56,7 +56,7 @@ Entwickelt in Passau, Bayern — für [Donau2Space](https://donau2space.de), ein
 
 ```
 brezngeo/
-├── brezngeo.php      # Plugin-Header, Konstanten (BRE_VERSION, BRE_DIR, BRE_URL)
+├── brezngeo.php      # Plugin-Header, Konstanten (BREZNGEO_VERSION, BREZNGEO_DIR, BREZNGEO_URL)
 ├── uninstall.php                 # Aufräumen bei Plugin-Löschung
 ├── assets/
 │   ├── admin.css                 # Gemeinsames Admin-Stylesheet
@@ -64,7 +64,7 @@ brezngeo/
 │   ├── bulk.js                   # Bulk-Generator AJAX-Loop + Progress-UI
 │   ├── editor-meta.js            # Meta Editor Box: Live-Zähler, KI-Regen-Button
 │   ├── geo-editor.js             # GEO Block Editor: Generieren / Löschen Button
-│   ├── geo-frontend.css          # Minimales Stylesheet für .bre-geo auf dem Frontend
+│   ├── geo-frontend.css          # Minimales Stylesheet für .brezngeo-geo auf dem Frontend
 │   ├── link-suggest.js           # Interne Link-Vorschläge: Trigger, UI, Apply (Gutenberg + Classic)
 │   └── seo-widget.js             # SEO Analyse Widget: Live-Auswertung im Editor
 ├── includes/
@@ -203,7 +203,7 @@ Batch-Verarbeitung aller veröffentlichten Beiträge ohne Meta-Beschreibung. Lä
 
 ### Crawler Log
 
-Loggt Besuche bekannter KI-Bots in der Tabelle `{prefix}bre_crawler_log` (bot_name, ip_hash SHA-256, url, visited_at). Einträge älter als 90 Tage werden automatisch bereinigt. Dashboard zeigt 30-Tage-Zusammenfassung.
+Loggt Besuche bekannter KI-Bots in der Tabelle `{prefix}brezngeo_crawler_log` (bot_name, ip_hash SHA-256, url, visited_at). Einträge älter als 90 Tage werden automatisch bereinigt. Dashboard zeigt 30-Tage-Zusammenfassung.
 
 ---
 
@@ -213,14 +213,14 @@ Loggt Besuche bekannter KI-Bots in der Tabelle `{prefix}bre_crawler_log` (bot_na
 
 | Option-Key | Inhalt |
 |---|---|
-| `bre_settings` | Aktiver Provider, API-Keys (verschleiert), Modell-Auswahl, Token-Kosten, `ai_enabled`-Flag |
-| `bre_meta_settings` | Meta Generator: Auto-Modus, Post-Types, Token-Modus, Prompt |
-| `bre_schema_settings` | Schema.org: aktivierte Typen, Organization sameAs-URLs |
-| `bre_geo_settings` | GEO Block: Modus, Position, Labels, CSS, Prompt, Farbschema |
-| `bre_robots_settings` | robots.txt: blockierte Bots |
-| `bre_llms_settings` | llms.txt: Titel, Beschreibung, Featured-Links, Footer, Seitenanzahl |
-| `bre_usage_stats` | Akkumulierte Token-Nutzung: `tokens_in`, `tokens_out`, `count` |
-| `bre_first_activated` | Unix-Timestamp der Erstaktivierung (für Welcome Notice) |
+| `brezngeo_settings` | Aktiver Provider, API-Keys (verschleiert), Modell-Auswahl, Token-Kosten, `ai_enabled`-Flag |
+| `brezngeo_meta_settings` | Meta Generator: Auto-Modus, Post-Types, Token-Modus, Prompt |
+| `brezngeo_schema_settings` | Schema.org: aktivierte Typen, Organization sameAs-URLs |
+| `brezngeo_geo_settings` | GEO Block: Modus, Position, Labels, CSS, Prompt, Farbschema |
+| `brezngeo_robots_settings` | robots.txt: blockierte Bots |
+| `brezngeo_llms_settings` | llms.txt: Titel, Beschreibung, Featured-Links, Footer, Seitenanzahl |
+| `brezngeo_usage_stats` | Akkumulierte Token-Nutzung: `tokens_in`, `tokens_out`, `count` |
+| `brezngeo_first_activated` | Unix-Timestamp der Erstaktivierung (für Welcome Notice) |
 
 ### Post Meta (wp_postmeta)
 
@@ -237,13 +237,13 @@ Loggt Besuche bekannter KI-Bots in der Tabelle `{prefix}bre_crawler_log` (bot_na
 
 | Transient | TTL | Zweck |
 |---|---|---|
-| `bre_llms_cache_{n}` | 1 Stunde | Gecachter llms.txt Inhalt je Seite |
-| `bre_link_analysis` | 1 Stunde | Dashboard Link-Analyse Ergebnis |
-| `bre_bulk_running` | 15 Minuten | Mutex-Lock für den Bulk Generator |
-| `bre_meta_stats` | 5 Minuten | Dashboard Meta-Coverage-Abfrage |
-| `bre_crawler_summary` | 5 Minuten | Dashboard Crawler-Zusammenfassung (letzte 30 Tage) |
+| `brezngeo_llms_cache_{n}` | 1 Stunde | Gecachter llms.txt Inhalt je Seite |
+| `brezngeo_link_analysis` | 1 Stunde | Dashboard Link-Analyse Ergebnis |
+| `brezngeo_bulk_running` | 15 Minuten | Mutex-Lock für den Bulk Generator |
+| `brezngeo_meta_stats` | 5 Minuten | Dashboard Meta-Coverage-Abfrage |
+| `brezngeo_crawler_summary` | 5 Minuten | Dashboard Crawler-Zusammenfassung (letzte 30 Tage) |
 
-> **Uninstall:** `uninstall.php` löscht `bre_settings` und `_bre_meta_description` für alle Posts. Die übrigen Option-Keys und die `bre_crawler_log`-Tabelle müssen manuell gelöscht werden.
+> **Uninstall:** `uninstall.php` löscht `brezngeo_settings` und `_bre_meta_description` für alle Posts. Die übrigen Option-Keys und die `brezngeo_crawler_log`-Tabelle müssen manuell gelöscht werden.
 
 ---
 
@@ -260,10 +260,10 @@ Kein `openssl_*` oder externe Extension nötig — läuft auf jeder PHP 8.0+ Ins
 **Sicherheitsgrenzen:** XOR mit statischem Salt ist Verschleierung, keine kryptografische Verschlüsselung. Für maximale Sicherheit können Keys als `wp-config.php`-Konstanten definiert werden:
 
 ```php
-define( 'BRE_OPENAI_KEY',    'sk-...' );
-define( 'BRE_ANTHROPIC_KEY', 'sk-ant-...' );
-define( 'BRE_GEMINI_KEY',    'AI...' );
-define( 'BRE_GROK_KEY',      'xai-...' );
+define( 'BREZNGEO_OPENAI_KEY',    'sk-...' );
+define( 'BREZNGEO_ANTHROPIC_KEY', 'sk-ant-...' );
+define( 'BREZNGEO_GEMINI_KEY',    'AI...' );
+define( 'BREZNGEO_GROK_KEY',      'xai-...' );
 ```
 
 ### CSRF-Schutz und Capability Checks
@@ -271,7 +271,7 @@ define( 'BRE_GROK_KEY',      'xai-...' );
 Jeder AJAX-Handler ohne Ausnahme:
 
 ```php
-check_ajax_referer( 'bre_admin', 'nonce' );
+check_ajax_referer( 'brezngeo_admin', 'nonce' );
 if ( ! current_user_can( 'manage_options' ) ) {
     wp_send_json_error( 'Unauthorized', 403 );
 }
@@ -304,19 +304,19 @@ Neuen Provider hinzufügen: `ProviderInterface` implementieren, in `Core.php` vi
 
 ## Hooks & Erweiterbarkeit
 
-### `bre_prompt` (Filter)
+### `brezngeo_prompt` (Filter)
 
 ```php
-add_filter( 'bre_prompt', function( string $prompt, WP_Post $post ): string {
+add_filter( 'brezngeo_prompt', function( string $prompt, WP_Post $post ): string {
     $keyword = get_post_meta( $post->ID, 'focus_keyword', true );
     return $keyword ? $prompt . "\nFokus-Keyword: {$keyword}" : $prompt;
 }, 10, 2 );
 ```
 
-### `bre_meta_saved` (Action)
+### `brezngeo_meta_saved` (Action)
 
 ```php
-add_action( 'bre_meta_saved', function( int $post_id, string $description ): void {
+add_action( 'brezngeo_meta_saved', function( int $post_id, string $description ): void {
     my_cdn_purge( get_permalink( $post_id ) );
 }, 10, 2 );
 ```
@@ -329,20 +329,20 @@ Alle Endpunkte erfordern `manage_options` (kein `nopriv`).
 
 | Action | Handler | Beschreibung |
 |---|---|---|
-| `bre_regen_meta` | `MetaEditorBox::ajax_regen` | Meta-Beschreibung für einzelnen Post neu generieren |
-| `bre_test_connection` | `ProviderPage::ajax_test_connection` | API-Key und Verbindung testen |
-| `bre_get_default_prompt` | `ProviderPage::ajax_get_default_prompt` | Standard-Prompt zurücksetzen |
-| `bre_link_analysis` | `LinkAnalysis::ajax_analyse` | Link-Analyse ausführen |
-| `bre_link_suggestions` | `LinkSuggest::ajax_suggest` | Top-10 interne Link-Vorschläge für aktuellen Beitrag zurückgeben |
-| `bre_geo_generate` | `GeoEditorBox::ajax_generate` | GEO Block generieren |
-| `bre_geo_clear` | `GeoEditorBox::ajax_clear` | GEO Block löschen |
-| `bre_llms_clear_cache` | `TxtPage::ajax_clear_cache` | llms.txt Cache leeren |
-| `bre_dismiss_llms_notice` | `LlmsTxt::ajax_dismiss_notice` | Rank-Math-Hinweis ausblenden |
-| `bre_dismiss_welcome` | `AdminMenu::ajax_dismiss_welcome` | Welcome Notice per User ausblenden |
-| `bre_bulk_generate` | `MetaGenerator::ajaxBulkGenerate` | Nächsten Batch verarbeiten |
-| `bre_bulk_stats` | `MetaGenerator::ajaxBulkStats` | Fortschritt abrufen |
-| `bre_bulk_release` | `MetaGenerator::ajaxBulkRelease` | Mutex-Lock manuell freigeben |
-| `bre_bulk_status` | `MetaGenerator::ajaxBulkStatus` | Lock-Status prüfen |
+| `brezngeo_regen_meta` | `MetaEditorBox::ajax_regen` | Meta-Beschreibung für einzelnen Post neu generieren |
+| `brezngeo_test_connection` | `ProviderPage::ajax_test_connection` | API-Key und Verbindung testen |
+| `brezngeo_get_default_prompt` | `ProviderPage::ajax_get_default_prompt` | Standard-Prompt zurücksetzen |
+| `brezngeo_link_analysis` | `LinkAnalysis::ajax_analyse` | Link-Analyse ausführen |
+| `brezngeo_link_suggestions` | `LinkSuggest::ajax_suggest` | Top-10 interne Link-Vorschläge für aktuellen Beitrag zurückgeben |
+| `brezngeo_geo_generate` | `GeoEditorBox::ajax_generate` | GEO Block generieren |
+| `brezngeo_geo_clear` | `GeoEditorBox::ajax_clear` | GEO Block löschen |
+| `brezngeo_llms_clear_cache` | `TxtPage::ajax_clear_cache` | llms.txt Cache leeren |
+| `brezngeo_dismiss_llms_notice` | `LlmsTxt::ajax_dismiss_notice` | Rank-Math-Hinweis ausblenden |
+| `brezngeo_dismiss_welcome` | `AdminMenu::ajax_dismiss_welcome` | Welcome Notice per User ausblenden |
+| `brezngeo_bulk_generate` | `MetaGenerator::ajaxBulkGenerate` | Nächsten Batch verarbeiten |
+| `brezngeo_bulk_stats` | `MetaGenerator::ajaxBulkStats` | Fortschritt abrufen |
+| `brezngeo_bulk_release` | `MetaGenerator::ajaxBulkRelease` | Mutex-Lock manuell freigeben |
+| `brezngeo_bulk_status` | `MetaGenerator::ajaxBulkStatus` | Lock-Status prüfen |
 
 ---
 
