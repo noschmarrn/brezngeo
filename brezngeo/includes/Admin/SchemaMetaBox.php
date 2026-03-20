@@ -62,18 +62,15 @@ class SchemaMetaBox {
 		}
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing
 		if ( ! isset( $_POST['_brezngeo_schema_nonce'] )
-			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-			|| ! wp_verify_nonce( sanitize_key( $_POST['_brezngeo_schema_nonce'] ), 'brezngeo_schema_meta_box' ) ) {
+			|| ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_brezngeo_schema_nonce'] ) ), 'brezngeo_schema_meta_box' ) ) {
 			return;
 		}
 		if ( ! current_user_can( 'edit_post', $post_id ) ) {
 			return;
 		}
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$input = isset( $_POST['brezngeo_schema'] ) && is_array( $_POST['brezngeo_schema'] )
-			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-			? wp_unslash( $_POST['brezngeo_schema'] )
+			? map_deep( wp_unslash( $_POST['brezngeo_schema'] ), 'sanitize_textarea_field' )
 			: array();
 		$clean = self::sanitizeData( $input );
 		update_post_meta( $post_id, self::META_TYPE, $clean['schema_type'] );

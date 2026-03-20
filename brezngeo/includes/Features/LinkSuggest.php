@@ -431,10 +431,10 @@ class LinkSuggest {
 			return;
 		}
 
-		// phpcs:disable WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$post_id = (int) ( wp_unslash( $_POST['post_id'] ?? 0 ) );
-		$content = wp_kses_post( wp_unslash( $_POST['post_content'] ?? '' ) );
-		// phpcs:enable
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- verified via check_ajax_referer() above
+		$post_id = isset( $_POST['post_id'] ) ? absint( wp_unslash( $_POST['post_id'] ) ) : 0;
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- verified via check_ajax_referer() above
+		$content = isset( $_POST['post_content'] ) ? wp_kses_post( wp_unslash( $_POST['post_content'] ) ) : '';
 
 		if ( $post_id && ! current_user_can( 'edit_post', $post_id ) ) {
 			wp_send_json_error( 'Insufficient permissions' );

@@ -3,7 +3,7 @@ Contributors: mifupadev
 Tags: seo, ai, meta description, schema, llms.txt
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 Requires PHP: 8.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -208,7 +208,7 @@ No data is transmitted during normal page loads or to visitors.
 * Data sent: Post title and content excerpt (meta descriptions, GEO Block); candidate post titles and URLs (link suggestions).
 * API endpoint: `https://generativelanguage.googleapis.com/`
 * Privacy policy: https://policies.google.com/privacy
-* Terms of use: https://ai.google.dev/gemini-api/terms
+* Terms of use: https://ai.google.dev/gemini-api/terms?hl=en
 
 = xAI Grok =
 * Data sent: Post title and content excerpt (meta descriptions, GEO Block); candidate post titles and URLs (link suggestions).
@@ -217,6 +217,12 @@ No data is transmitted during normal page loads or to visitors.
 * Terms of use: https://x.ai/legal/terms-of-service
 
 == Changelog ==
+
+= 1.1.0 =
+* Fixed Google Gemini API terms URL that caused too many redirects during WordPress.org review.
+* Improved input sanitization in Schema.org meta box — uses `map_deep()` with `sanitize_textarea_field` instead of relying on downstream sanitization with phpcs suppression.
+* Improved input sanitization in Internal Link Suggestions AJAX handler — uses `absint()` and standard `isset()` pattern.
+* Removed all `phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized` comments — all `$_POST` data is now sanitized inline at the point of access.
 
 = 1.0.0 =
 * Initial release as BreznGEO.
@@ -239,6 +245,9 @@ No data is transmitted during normal page loads or to visitors.
 * `brezngeo_prompt` filter and `brezngeo_meta_saved` action hooks for developers.
 
 == Upgrade Notice ==
+
+= 1.1.0 =
+Fixes WordPress.org review issues: corrected Google Gemini terms URL and improved inline input sanitization.
 
 = 1.0.0 =
 Initial release.
