@@ -156,6 +156,18 @@
 								</p>
 							</td>
 						</tr>
+						<tr>
+							<td style="padding:6px 0;">
+								<label>
+									<input type="checkbox" name="brezngeo_ai_features[keywords]" value="1"
+										<?php checked( $ai_features['keywords'] ); ?>>
+									<strong><?php esc_html_e( 'Keyword Analysis', 'brezngeo' ); ?></strong>
+								</label>
+								<p style="margin:2px 0 0 22px;color:#777;font-size:12px;">
+									<?php esc_html_e( 'AI-powered keyword suggestions, optimization tips, and semantic analysis.', 'brezngeo' ); ?>
+								</p>
+							</td>
+						</tr>
 					</table>
 					<p style="margin-top:12px;">
 						<?php submit_button( __( 'Save', 'brezngeo' ), 'secondary', 'submit', false ); ?>

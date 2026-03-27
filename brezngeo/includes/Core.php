@@ -48,6 +48,10 @@ class Core {
 		require_once BREZNGEO_DIR . 'includes/Admin/GeoEditorBox.php';
 		require_once BREZNGEO_DIR . 'includes/Admin/SchemaMetaBox.php';
 		require_once BREZNGEO_DIR . 'includes/Admin/SchemaPage.php';
+		require_once BREZNGEO_DIR . 'includes/Helpers/KeywordVariants.php';
+		require_once BREZNGEO_DIR . 'includes/Features/KeywordAnalysis.php';
+		require_once BREZNGEO_DIR . 'includes/Admin/KeywordMetaBox.php';
+		require_once BREZNGEO_DIR . 'includes/Admin/KeywordPage.php';
 	}
 
 	private function register_hooks(): void {
@@ -80,6 +84,8 @@ class Core {
 			( new Admin\GeoEditorBox() )->register();
 			( new Admin\SchemaMetaBox() )->register();
 			( new Admin\SchemaPage() )->register();
+			( new Admin\KeywordMetaBox() )->register();
+			( new Admin\KeywordPage() )->register();
 		}
 	}
 }

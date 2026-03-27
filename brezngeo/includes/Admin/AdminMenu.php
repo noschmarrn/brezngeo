@@ -17,9 +17,10 @@ class AdminMenu {
 
 	public static function get_ai_features(): array {
 		$defaults = array(
-			'meta'  => false,
-			'geo'   => false,
-			'links' => false,
+			'meta'     => false,
+			'geo'      => false,
+			'links'    => false,
+			'keywords' => false,
 		);
 		$saved    = get_option( self::OPTION_KEY_AI_FEATURES, array() );
 		$saved    = is_array( $saved ) ? $saved : array();
@@ -40,9 +41,10 @@ class AdminMenu {
 		update_option(
 			self::OPTION_KEY_AI_FEATURES,
 			array(
-				'meta'  => ! empty( $input['meta'] ),
-				'geo'   => ! empty( $input['geo'] ),
-				'links' => ! empty( $input['links'] ),
+				'meta'     => ! empty( $input['meta'] ),
+				'geo'      => ! empty( $input['geo'] ),
+				'links'    => ! empty( $input['links'] ),
+				'keywords' => ! empty( $input['keywords'] ),
 			)
 		);
 
@@ -164,6 +166,15 @@ class AdminMenu {
 			'manage_options',
 			'brezngeo-link-suggest',
 			array( new LinkSuggestPage(), 'render' )
+		);
+
+		add_submenu_page(
+			'brezngeo',
+			__( 'Keyword Analysis', 'brezngeo' ),
+			__( 'Keyword Analysis', 'brezngeo' ),
+			'manage_options',
+			'brezngeo-keyword',
+			array( new KeywordPage(), 'render' )
 		);
 
 		add_submenu_page(

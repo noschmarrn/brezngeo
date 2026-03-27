@@ -3,7 +3,7 @@ Contributors: mifupadev
 Tags: seo, ai, meta description, schema, llms.txt
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 Requires PHP: 8.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -20,15 +20,16 @@ All AI features are optional. Without an API key, the plugin falls back to local
 
 = Learn more =
 
-* Website: https://brezngeo.com/
-* FAQ: https://brezngeo.com/faq.html
-* Live demo: https://brezngeo.com/demo.html
+* Website: <a href="https://brezngeo.com/">brezngeo.com</a>
+* FAQ: <a href="https://brezngeo.com/faq.html">brezngeo.com/faq</a>
+* Live demo: <a href="https://brezngeo.com/demo.html">brezngeo.com/demo</a>
 
 = At a glance =
 
 * Generates AI meta descriptions automatically on publish — falls back to clean local extraction without any API key
 * Adds a GEO Quick Overview block to each post: AI-generated summary, key bullet points, optional FAQ
 * Suggests internal links while writing — text-based matching works without AI; optional AI upgrade for semantic ranking
+* Analyzes keyword usage in real time — checks title, headings, density, images, and more with locale-aware variant matching
 * Bulk-generates descriptions for all existing posts that have none
 * Adds Schema.org JSON-LD structured data for search engines and AI retrieval systems
 * Serves `/llms.txt` — a machine-readable content index for AI discovery tools
@@ -97,6 +98,10 @@ Block individual AI training and data-harvesting bots directly from the WordPres
 = Crawler Log =
 
 Automatically logs visits from known AI bots. Stores the bot name, a SHA-256-hashed IP address, and the requested URL. Entries older than 90 days are purged automatically. A 30-day summary is shown on the plugin dashboard.
+
+= Keyword Analysis =
+
+A post editor meta box that analyzes keyword usage in real time. Enter a primary keyword and optional secondary keywords — the plugin checks title, headings, keyword density, image alt text, meta description, URL slug, first and last paragraph, image titles and captions, and excerpt. Each check reports pass, warning, or fail status with actionable feedback. Three update modes: live (debounced while typing), manual (button click), or on save. Optional AI features (when an API key is configured): keyword suggestions, content optimization tips, and semantic keyword analysis. Supports locale-aware keyword variant matching for English and German. Configurable via a dedicated settings page (target density, minimum occurrences, post types, debounce interval).
 
 = Post Editor Integration =
 
@@ -189,34 +194,43 @@ The following features may send data to the selected AI provider:
 * **Meta Descriptions** — post title and content excerpt are sent to generate a meta description. Triggered on publish, on update, or via the Bulk Generator.
 * **GEO Block** — post title and content are sent to generate a Quick Overview block (summary, key points, optional FAQ). Triggered on publish/update or manually from the post editor.
 * **Internal Link Suggestions (AI upgrade)** — up to 20 pre-scored candidate link pairs (post titles and URLs) are sent for semantic ranking. Triggered manually, on save, or on a timed interval — all configurable by the user.
+* **Keyword Analysis (AI upgrade)** — post content and keyword are sent for AI-powered keyword suggestions, content optimization tips, and semantic keyword analysis. Triggered manually from the post editor meta box.
 
 No data is transmitted during normal page loads or to visitors.
 
 = OpenAI =
-* Data sent: Post title and content excerpt (meta descriptions, GEO Block); candidate post titles and URLs (link suggestions).
+* Data sent: Post title and content excerpt (meta descriptions, GEO Block); candidate post titles and URLs (link suggestions); post content and keyword (keyword analysis).
 * API endpoint: `https://api.openai.com/v1/`
 * Privacy policy: https://openai.com/policies/privacy-policy/
 * Terms of use: https://openai.com/policies/terms-of-use/
 
 = Anthropic Claude =
-* Data sent: Post title and content excerpt (meta descriptions, GEO Block); candidate post titles and URLs (link suggestions).
+* Data sent: Post title and content excerpt (meta descriptions, GEO Block); candidate post titles and URLs (link suggestions); post content and keyword (keyword analysis).
 * API endpoint: `https://api.anthropic.com/`
 * Privacy policy: https://www.anthropic.com/privacy
 * Terms of use: https://www.anthropic.com/legal/consumer-terms
 
 = Google Gemini =
-* Data sent: Post title and content excerpt (meta descriptions, GEO Block); candidate post titles and URLs (link suggestions).
+* Data sent: Post title and content excerpt (meta descriptions, GEO Block); candidate post titles and URLs (link suggestions); post content and keyword (keyword analysis).
 * API endpoint: `https://generativelanguage.googleapis.com/`
 * Privacy policy: https://policies.google.com/privacy
 * Terms of use: https://ai.google.dev/gemini-api/terms?hl=en
 
 = xAI Grok =
-* Data sent: Post title and content excerpt (meta descriptions, GEO Block); candidate post titles and URLs (link suggestions).
+* Data sent: Post title and content excerpt (meta descriptions, GEO Block); candidate post titles and URLs (link suggestions); post content and keyword (keyword analysis).
 * API endpoint: `https://api.x.ai/`
 * Privacy policy: https://x.ai/privacy-policy
 * Terms of use: https://x.ai/legal/terms-of-service
 
 == Changelog ==
+
+= 1.2.0 =
+* New: Keyword Analysis meta box in the post editor — checks keyword usage across title, headings, density, image alts, meta description, slug, first/last paragraph, image title/caption, and excerpt.
+* New: Primary and secondary keyword support with configurable minimum occurrences.
+* New: Three analysis update modes: live (debounced), manual, and on-save.
+* New: Locale-aware keyword variant matching for English and German (compound words, suffixes).
+* New: Optional AI-powered keyword suggestions, content optimization tips, and semantic keyword analysis.
+* New: Keyword Analysis settings page with target density, minimum occurrences, post type selection, and debounce configuration.
 
 = 1.1.0 =
 * Fixed Google Gemini API terms URL that caused too many redirects during WordPress.org review.
@@ -245,6 +259,9 @@ No data is transmitted during normal page loads or to visitors.
 * `brezngeo_prompt` filter and `brezngeo_meta_saved` action hooks for developers.
 
 == Upgrade Notice ==
+
+= 1.2.0 =
+Adds Keyword Analysis: real-time keyword checks in the post editor with optional AI-powered suggestions.
 
 = 1.1.0 =
 Fixes WordPress.org review issues: corrected Google Gemini terms URL and improved inline input sanitization.

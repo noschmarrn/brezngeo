@@ -3,8 +3,8 @@
 ![PHP 8.0+](https://img.shields.io/badge/PHP-8.0%2B-blue)
 ![WordPress 6.0+](https://img.shields.io/badge/WordPress-6.0%2B-21759b)
 ![License: GPL-2.0](https://img.shields.io/badge/License-GPL--2.0--or--later-green)
-![Version](https://img.shields.io/badge/Version-1.1.0-orange)
-![Tests](https://img.shields.io/badge/Tests-112%20passing-brightgreen)
+![Version](https://img.shields.io/badge/Version-1.2.0-orange)
+![Tests](https://img.shields.io/badge/Tests-158%20passing-brightgreen)
 
 🇬🇧 [English version → README.md](README.md)
 
@@ -65,6 +65,7 @@ brezngeo/
 │   ├── editor-meta.js            # Meta Editor Box: Live-Zähler, KI-Regen-Button
 │   ├── geo-editor.js             # GEO Block Editor: Generieren / Löschen Button
 │   ├── geo-frontend.css          # Minimales Stylesheet für .brezngeo-geo auf dem Frontend
+│   ├── keyword-analysis.js        # Keyword-Analyse: AJAX-Checks, Ergebnis-Rendering, KI-Handler
 │   ├── link-suggest.js           # Interne Link-Vorschläge: Trigger, UI, Apply (Gutenberg + Classic)
 │   └── seo-widget.js             # SEO Analyse Widget: Live-Auswertung im Editor
 ├── includes/
@@ -74,6 +75,8 @@ brezngeo/
 │   │   ├── BulkPage.php          # Bulk Generator Admin-Seite
 │   │   ├── GeoEditorBox.php      # GEO Block Meta-Box im Post-Editor
 │   │   ├── GeoPage.php           # GEO Block Einstellungsseite
+│   │   ├── KeywordMetaBox.php    # Keyword-Analyse Meta-Box im Post-Editor
+│   │   ├── KeywordPage.php       # Keyword-Analyse Einstellungsseite
 │   │   ├── LinkAnalysis.php      # AJAX-Handler für Link-Analyse Dashboard
 │   │   ├── LinkSuggestPage.php   # Einstellungsseite für interne Link-Vorschläge
 │   │   ├── MetaEditorBox.php     # Meta Description Meta-Box im Post-Editor
@@ -90,6 +93,7 @@ brezngeo/
 │   │   ├── GeoBlock.php          # GEO Quick Overview Block (Frontend-Ausgabe)
 │   │   ├── LlmsTxt.php           # /llms.txt Endpunkt mit ETag/Cache
 │   │   ├── LinkSuggest.php       # Interne Link-Vorschläge: Matching-Engine + AJAX-Handler + Meta-Box
+│   │   ├── KeywordAnalysis.php    # Keyword-Analyse Engine: 10 SEO-Checks
 │   │   ├── MetaGenerator.php     # Kernlogik: KI-Aufruf, Speichern, Bulk, AJAX
 │   │   ├── RobotsTxt.php         # robots.txt Bot-Blocking via WP-Filter
 │   │   └── SchemaEnhancer.php    # JSON-LD Schema.org Ausgabe in wp_head
@@ -97,6 +101,7 @@ brezngeo/
 │   │   ├── BulkQueue.php         # Mutex-Lock für Bulk-Prozesse (Transient-basiert)
 │   │   ├── FallbackMeta.php      # Meta-Extraktion aus Post-Content ohne KI
 │   │   ├── KeyVault.php          # API-Key Verschleierung vor dem Schreiben in die DB
+│   │   ├── KeywordVariants.php   # Locale-basierte Keyword-Varianten (EN/DE)
 │   │   └── TokenEstimator.php    # Grobe Token-Schätzung für Kostenvorschau im Bulk
 │   └── Providers/
 │       ├── ProviderInterface.php # Interface: getId, getName, getModels, testConnection, generateText
@@ -201,6 +206,36 @@ Batch-Verarbeitung aller veröffentlichten Beiträge ohne Meta-Beschreibung. Lä
 
 ---
 
+### Keyword-Analyse
+
+Meta-Box im Post-Editor, die die Keyword-Nutzung über zehn On-Page-SEO-Checks analysiert:
+
+| Check | Was geprüft wird |
+|---|---|
+| Titel | Keyword im Beitragstitel vorhanden |
+| Überschriften | Keyword in mindestens einer H2–H6 |
+| Dichte | Keyword-Dichte im Zielbereich (Standard 0,5 %–2,5 %) |
+| Bild-Alt | Mindestens ein Bild hat das Keyword im `alt`-Attribut |
+| Meta Description | Keyword in der Meta-Beschreibung |
+| Slug | Keyword in der URL |
+| Erster Absatz | Keyword im ersten Absatz |
+| Letzter Absatz | Keyword im letzten Absatz |
+| Bild-Titel/Caption | Keyword in mindestens einem Bild-`title` oder `<figcaption>` |
+| Excerpt | Keyword im Beitragsauszug |
+
+**Primär- + Sekundär-Keywords:** Das Hauptkeyword wird mit strengeren Schwellenwerten geprüft, Sekundär-Keywords mit gelockerten Minimums.
+
+**Update-Modi:** `live` (debounced beim Tippen), `manual` (Button-Klick) oder `save` (beim Speichern).
+
+**Locale-basierte Varianten:** `KeywordVariants` generiert Compound-Formen (Leerzeichen ↔ Bindestrich), Trailing-s und sprachspezifische Suffixe (EN: -es, -ing, -ed; DE: -er, -en, -e).
+
+**Optionale KI-Features** (bei konfiguriertem API-Key):
+- **Suggest** — KI-generierte Keyword-Vorschläge basierend auf dem Artikelinhalt
+- **Optimize** — Content-Optimierungstipps für das aktuelle Keyword
+- **Semantic** — verwandte semantische Keywords für breitere Themenabdeckung
+
+---
+
 ### Crawler Log
 
 Loggt Besuche bekannter KI-Bots in der Tabelle `{prefix}brezngeo_crawler_log` (bot_name, ip_hash SHA-256, url, visited_at). Einträge älter als 90 Tage werden automatisch bereinigt. Dashboard zeigt 30-Tage-Zusammenfassung.
@@ -219,6 +254,7 @@ Loggt Besuche bekannter KI-Bots in der Tabelle `{prefix}brezngeo_crawler_log` (b
 | `brezngeo_geo_settings` | GEO Block: Modus, Position, Labels, CSS, Prompt, Farbschema |
 | `brezngeo_robots_settings` | robots.txt: blockierte Bots |
 | `brezngeo_llms_settings` | llms.txt: Titel, Beschreibung, Featured-Links, Footer, Seitenanzahl |
+| `brezngeo_keyword_settings` | Keyword-Analyse: Update-Modus, Zieldichte, Min. Vorkommen, Post-Types, Debounce |
 | `brezngeo_usage_stats` | Akkumulierte Token-Nutzung: `tokens_in`, `tokens_out`, `count` |
 | `brezngeo_first_activated` | Unix-Timestamp der Erstaktivierung (für Welcome Notice) |
 
@@ -232,6 +268,9 @@ Loggt Besuche bekannter KI-Bots in der Tabelle `{prefix}brezngeo_crawler_log` (b
 | `_bre_geo_summary` | GEO Block Summary |
 | `_bre_geo_bullets` | GEO Block Key Points (JSON-Array) |
 | `_bre_geo_faq` | GEO Block FAQ (JSON-Array) |
+| `_brezngeo_keyword_main` | Primäres Keyword |
+| `_brezngeo_keyword_secondary` | Sekundäre Keywords (kommagetrennt) |
+| `_brezngeo_keyword_results` | Gecachte Analyse-Ergebnisse (JSON) |
 
 ### Transients
 
@@ -243,7 +282,7 @@ Loggt Besuche bekannter KI-Bots in der Tabelle `{prefix}brezngeo_crawler_log` (b
 | `brezngeo_meta_stats` | 5 Minuten | Dashboard Meta-Coverage-Abfrage |
 | `brezngeo_crawler_summary` | 5 Minuten | Dashboard Crawler-Zusammenfassung (letzte 30 Tage) |
 
-> **Uninstall:** `uninstall.php` löscht `brezngeo_settings` und `_bre_meta_description` für alle Posts. Die übrigen Option-Keys und die `brezngeo_crawler_log`-Tabelle müssen manuell gelöscht werden.
+> **Uninstall:** `uninstall.php` löscht `brezngeo_settings`, `brezngeo_keyword_settings` und die Post-Meta-Keys `_brezngeo_meta_description`, `_brezngeo_keyword_main`, `_brezngeo_keyword_secondary`, `_brezngeo_keyword_results` für alle Posts. Die übrigen Option-Keys und die `brezngeo_crawler_log`-Tabelle müssen manuell gelöscht werden.
 
 ---
 
@@ -343,6 +382,10 @@ Alle Endpunkte erfordern `manage_options` (kein `nopriv`).
 | `brezngeo_bulk_stats` | `MetaGenerator::ajaxBulkStats` | Fortschritt abrufen |
 | `brezngeo_bulk_release` | `MetaGenerator::ajaxBulkRelease` | Mutex-Lock manuell freigeben |
 | `brezngeo_bulk_status` | `MetaGenerator::ajaxBulkStatus` | Lock-Status prüfen |
+| `brezngeo_keyword_analyze` | `KeywordMetaBox::ajax_analyze` | Keyword-Analyse für einen Post ausführen |
+| `brezngeo_keyword_ai_suggest` | `KeywordMetaBox::ajax_ai_suggest` | KI-Keyword-Vorschläge |
+| `brezngeo_keyword_ai_optimize` | `KeywordMetaBox::ajax_ai_optimize` | KI-Content-Optimierungstipps |
+| `brezngeo_keyword_ai_semantic` | `KeywordMetaBox::ajax_ai_semantic` | KI-semantische Keyword-Analyse |
 
 ---
 
@@ -378,7 +421,7 @@ Kein JavaScript-Build-Step. Alle Assets unter `assets/` sind direkte JS/CSS-Date
 | Caching | WordPress Transients |
 | Frontend | Vanilla JS + jQuery (WordPress-integriert), kein Build-Step |
 | I18n | `.pot`-File, Text-Domain `brezngeo` |
-| Tests | PHPUnit (102 Tests, 216 Assertions) |
+| Tests | PHPUnit (158 Tests, 301 Assertions) |
 | Coding Standard | WordPress PHPCS |
 | Lizenz | GPL-2.0-or-later |
 
