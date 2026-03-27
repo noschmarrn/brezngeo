@@ -70,12 +70,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<tr>
 				<th scope="row"><?php esc_html_e( 'Show keyword meta box on', 'brezngeo' ); ?></th>
 				<td>
-					<?php foreach ( $post_types as $pt ) : ?>
+					<?php foreach ( $post_types as $brezngeo_pt ) : ?>
 					<label style="display:block;margin-bottom:4px;">
 						<input type="checkbox" name="brezngeo_keyword_settings[post_types][]"
-							value="<?php echo esc_attr( $pt->name ); ?>"
-							<?php checked( in_array( $pt->name, $settings['post_types'], true ) ); ?>>
-						<?php echo esc_html( $pt->labels->name ); ?>
+							value="<?php echo esc_attr( $brezngeo_pt->name ); ?>"
+							<?php checked( in_array( $brezngeo_pt->name, $settings['post_types'], true ) ); ?>>
+						<?php echo esc_html( $brezngeo_pt->labels->name ); ?>
 					</label>
 					<?php endforeach; ?>
 				</td>

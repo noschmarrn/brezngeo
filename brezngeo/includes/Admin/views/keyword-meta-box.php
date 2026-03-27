@@ -20,10 +20,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</p>
 	<div id="brezngeo-keyword-secondary-list">
 		<?php if ( ! empty( $secondary ) ) : ?>
-			<?php foreach ( $secondary as $kw ) : ?>
+			<?php foreach ( $secondary as $brezngeo_kw ) : ?>
 			<div class="brezngeo-keyword-secondary-row" style="display:flex;gap:6px;margin-bottom:4px;">
 				<input type="text" name="brezngeo_keyword_secondary[]"
-					value="<?php echo esc_attr( $kw ); ?>"
+					value="<?php echo esc_attr( $brezngeo_kw ); ?>"
 					style="flex:1;box-sizing:border-box;">
 				<button type="button" class="button brezngeo-keyword-remove-secondary">&times;</button>
 			</div>
