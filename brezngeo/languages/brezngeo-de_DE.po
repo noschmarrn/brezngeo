@@ -18,9 +18,6 @@ msgstr ""
 "X-Domain: brezngeo\n"
 
 #: includes/Admin/AdminMenu.php:11
-msgid "BreznGEO"
-msgstr "BreznGEO"
-
 #: includes/Admin/AdminMenu.php:12
 msgid "BreznGEO"
 msgstr "BreznGEO"
@@ -1089,3 +1086,534 @@ msgstr "Generiert GEO-optimierte Inhaltsblöcke mit KI für bessere LLM-Sichtbar
 #: includes/Admin/views/dashboard.php
 msgid "Save"
 msgstr "Speichern"
+
+# --- v1.3.3 i18n pass ---
+
+#: includes/Admin/views/dashboard.php
+#: includes/Admin/AdminMenu.php
+#: includes/Admin/views/keyword-settings.php
+msgid "Keyword Analysis"
+msgstr "Keyword-Analyse"
+
+#: includes/Admin/views/dashboard.php
+msgid "AI-powered keyword suggestions, optimization tips, and semantic analysis."
+msgstr "KI-basierte Keyword-Vorschläge, Optimierungstipps und semantische Analyse."
+
+#: includes/Admin/views/meta.php
+msgid "SEO Widget"
+msgstr "SEO-Widget"
+
+#: includes/Admin/views/meta.php
+msgid "Theme outputs post title as H1 (suppresses \"no H1\" warning in editor)"
+msgstr "Theme gibt Beitragstitel als H1 aus (unterdrückt \"kein H1\"-Warnung im Editor)"
+
+#: includes/Admin/views/meta.php
+msgid "Most themes render the post title as an H1 tag on the front end. Enable this to avoid false warnings in the SEO Widget when the content itself contains no H1."
+msgstr "Die meisten Themes geben den Beitragstitel als H1 im Frontend aus. Aktivieren, um falsche Warnungen im SEO-Widget zu vermeiden, wenn der Inhalt selbst kein H1 enthält."
+
+#: includes/Admin/views/meta.php
+msgid "No AI provider active."
+msgstr "Kein KI-Anbieter aktiv."
+
+#: includes/Admin/views/meta.php
+msgid "Meta descriptions will use the fallback method (first paragraph of the post) until an API key is configured and AI generation is enabled."
+msgstr "Meta-Beschreibungen verwenden die Fallback-Methode (erster Absatz des Beitrags), bis ein API-Schlüssel konfiguriert und die KI-Generierung aktiviert ist."
+
+#: includes/Admin/views/meta.php
+msgid "Configure AI Provider →"
+msgstr "KI-Anbieter konfigurieren →"
+
+#: includes/Admin/views/meta.php
+msgid "Fallback mode active — configure an AI provider to enable AI generation."
+msgstr "Fallback-Modus aktiv — einen KI-Anbieter konfigurieren, um KI-Generierung zu aktivieren."
+
+#: includes/Admin/views/txt.php
+msgid "Clear Cache"
+msgstr "Cache leeren"
+
+#: includes/Admin/views/txt.php
+msgid "URL:"
+msgstr "URL:"
+
+#: includes/Admin/KeywordMetaBox.php
+msgid "Keyword Analysis (BreznGEO)"
+msgstr "Keyword-Analyse (BreznGEO)"
+
+#: includes/Admin/views/keyword-meta-box.php
+msgid "Main Keyword"
+msgstr "Haupt-Keyword"
+
+#: includes/Admin/views/keyword-meta-box.php
+msgid "e.g. Passau travel guide"
+msgstr "z. B. Passau Reiseführer"
+
+#: includes/Admin/views/keyword-meta-box.php
+msgid "Secondary Keywords"
+msgstr "Neben-Keywords"
+
+#: includes/Admin/views/keyword-meta-box.php
+msgid "Add Keyword"
+msgstr "Keyword hinzufügen"
+
+#: includes/Admin/views/keyword-meta-box.php
+msgid "Analyze"
+msgstr "Analysieren"
+
+#: includes/Admin/views/keyword-meta-box.php
+msgid "Suggest Keywords"
+msgstr "Keywords vorschlagen"
+
+#: includes/Admin/views/keyword-meta-box.php
+msgid "Showing cached results. Click \"Analyze\" to refresh."
+msgstr "Gecachte Ergebnisse. Klicke \"Analysieren\" zum Aktualisieren."
+
+#: includes/Admin/views/keyword-meta-box.php
+msgid "Optimization Tips"
+msgstr "Optimierungstipps"
+
+#: includes/Admin/views/keyword-meta-box.php
+msgid "Semantic Analysis"
+msgstr "Semantische Analyse"
+
+#: includes/Admin/KeywordMetaBox.php (JS i18n)
+msgid "Analyzing…"
+msgstr "Analysiere…"
+
+#: includes/Admin/KeywordMetaBox.php
+msgid "Please enter a main keyword."
+msgstr "Bitte ein Haupt-Keyword eingeben."
+
+#: includes/Admin/KeywordMetaBox.php
+msgid "Getting suggestions…"
+msgstr "Hole Vorschläge…"
+
+#: includes/Admin/KeywordMetaBox.php
+msgid "Getting optimization tips…"
+msgstr "Hole Optimierungstipps…"
+
+#: includes/Admin/KeywordMetaBox.php
+msgid "Running semantic analysis…"
+msgstr "Semantische Analyse läuft…"
+
+#: includes/Admin/KeywordMetaBox.php
+msgid "AI keyword features are not activated."
+msgstr "KI-Keyword-Funktionen sind nicht aktiviert."
+
+#: includes/Admin/KeywordMetaBox.php
+msgid "AI generation failed. Check provider settings."
+msgstr "KI-Generierung fehlgeschlagen. Provider-Einstellungen prüfen."
+
+#: includes/Admin/KeywordMetaBox.php
+msgid "Could not parse AI response."
+msgstr "KI-Antwort konnte nicht verarbeitet werden."
+
+#: includes/Admin/KeywordMetaBox.php
+msgid "No keyword provided."
+msgstr "Kein Keyword angegeben."
+
+#: includes/Admin/SeoWidget.php
+msgid "No H1 heading"
+msgstr "Keine H1-Überschrift"
+
+#: includes/Admin/SeoWidget.php
+msgid "Multiple H1 headings"
+msgstr "Mehrere H1-Überschriften"
+
+#: includes/Admin/SeoWidget.php
+msgid "No internal links"
+msgstr "Keine internen Links"
+
+#: includes/Admin/SeoWidget.php
+msgid "internal"
+msgstr "intern"
+
+#: includes/Admin/SeoWidget.php
+msgid "external"
+msgstr "extern"
+
+#: includes/Admin/SeoWidget.php
+msgid "min"
+msgstr "Min."
+
+#: includes/Admin/views/keyword-settings.php
+msgid "Analysis Settings"
+msgstr "Analyse-Einstellungen"
+
+#: includes/Admin/views/keyword-settings.php
+msgid "Update Mode"
+msgstr "Aktualisierungsmodus"
+
+#: includes/Admin/views/keyword-settings.php
+msgid "Manual — click \"Analyze\" button"
+msgstr "Manuell — Button \"Analysieren\" klicken"
+
+#: includes/Admin/views/keyword-settings.php
+msgid "Live — auto-analyze while typing"
+msgstr "Live — automatisch beim Tippen analysieren"
+
+#: includes/Admin/views/keyword-settings.php
+msgid "On Save — analyze when post is saved"
+msgstr "Beim Speichern — analysieren wenn Beitrag gespeichert wird"
+
+#: includes/Admin/views/keyword-settings.php
+msgid "Target Keyword Density (%)"
+msgstr "Ziel-Keyword-Dichte (%)"
+
+#: includes/Admin/views/keyword-settings.php
+msgid "Recommended: 1.0–2.0%. Pass range is ±0.5% around the target."
+msgstr "Empfohlen: 1,0–2,0 %. Toleranzbereich ist ±0,5 % um den Zielwert."
+
+#: includes/Admin/views/keyword-settings.php
+msgid "Min. Occurrences (Primary)"
+msgstr "Mind. Vorkommen (Primär)"
+
+#: includes/Admin/views/keyword-settings.php
+msgid "Min. Occurrences (Secondary)"
+msgstr "Mind. Vorkommen (Sekundär)"
+
+#: includes/Admin/views/keyword-settings.php
+msgid "Live Mode Debounce (ms)"
+msgstr "Live-Modus Verzögerung (ms)"
+
+#: includes/Admin/views/keyword-settings.php
+msgid "Delay in milliseconds before live analysis triggers after typing stops."
+msgstr "Verzögerung in Millisekunden bevor die Live-Analyse nach dem Tippen startet."
+
+#: includes/Admin/views/keyword-settings.php
+msgid "Show keyword meta box on"
+msgstr "Keyword-Meta-Box anzeigen bei"
+
+#: includes/Admin/views/bulk.php
+msgid "No AI provider connected — descriptions will be generated from content without AI (fallback mode)."
+msgstr "Kein KI-Anbieter verbunden — Beschreibungen werden ohne KI aus dem Inhalt generiert (Fallback-Modus)."
+
+#: includes/Admin/views/geo.php
+msgid "Labels"
+msgstr "Beschriftungen"
+
+#: includes/Admin/views/geo.php
+msgid "Styling"
+msgstr "Darstellung"
+
+#: includes/Admin/views/geo.php
+msgid "Position"
+msgstr "Position"
+
+#: includes/Admin/views/geo.php
+msgid "Theme"
+msgstr "Theme"
+
+#: includes/Admin/views/geo.php
+msgid "Light"
+msgstr "Hell"
+
+#: includes/Admin/views/geo.php
+msgid "Dark"
+msgstr "Dunkel"
+
+#: includes/Admin/views/geo.php
+msgid "Minimal"
+msgstr "Minimal"
+
+#: includes/Admin/views/geo.php
+msgid "Brezn"
+msgstr "Brezn"
+
+# --- Schema.org ---
+
+#: includes/Admin/AdminMenu.php
+msgid "Schema.org"
+msgstr "Schema.org"
+
+#: includes/Admin/AdminMenu.php
+msgid "AI disabled"
+msgstr "KI deaktiviert"
+
+#: includes/Admin/AdminMenu.php
+msgid "\xe2\x80\x94 Not configured \xe2\x80\x94"
+msgstr "\xe2\x80\x94 Nicht konfiguriert \xe2\x80\x94"
+
+#: includes/Admin/views/schema.php
+msgid "BreznGEO Schema"
+msgstr "BreznGEO Schema"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "Schema Type"
+msgstr "Schema-Typ"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "\xe2\x80\x94 No Schema \xe2\x80\x94"
+msgstr "\xe2\x80\x94 Kein Schema \xe2\x80\x94"
+
+#: includes/Admin/views/schema.php
+msgid "BlogPosting / Article (with embedded Author + Image)"
+msgstr "BlogPosting / Artikel (mit eingebettetem Autor + Bild)"
+
+#: includes/Admin/views/schema.php
+msgid "FAQPage (from GEO Quick Overview \xe2\x80\x94 automatic)"
+msgstr "FAQPage (aus GEO Schnell\xc3\xbcberblick \xe2\x80\x94 automatisch)"
+
+#: includes/Admin/views/schema.php
+msgid "ImageObject (Featured Image)"
+msgstr "ImageObject (Beitragsbild)"
+
+#: includes/Admin/views/schema.php
+msgid "VideoObject (auto-detect YouTube/Vimeo)"
+msgstr "VideoObject (YouTube/Vimeo automatisch erkennen)"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "Recipe"
+msgstr "Rezept"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "Recipe Name"
+msgstr "Rezeptname"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "Recipe (Metabox in Post Editor)"
+msgstr "Rezept (Metabox im Beitragseditor)"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "Event"
+msgstr "Veranstaltung"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "Event Name"
+msgstr "Veranstaltungsname"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "Event (Metabox in Post Editor)"
+msgstr "Veranstaltung (Metabox im Beitragseditor)"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "HowTo Guide"
+msgstr "HowTo-Anleitung"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "HowTo (Metabox in Post Editor)"
+msgstr "HowTo (Metabox im Beitragseditor)"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "Review / Rating"
+msgstr "Bewertung / Rating"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "Review with Rating (Metabox in Post Editor)"
+msgstr "Bewertung mit Rating (Metabox im Beitragseditor)"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "Guide Name"
+msgstr "Anleitung Name"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "Steps (one line = one step)"
+msgstr "Schritte (eine Zeile = ein Schritt)"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "Ingredients (one per line)"
+msgstr "Zutaten (eine pro Zeile)"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "Instructions (one step per line)"
+msgstr "Anleitung (ein Schritt pro Zeile)"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "Prep Time (min)"
+msgstr "Vorbereitungszeit (Min.)"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "Cook Time (min)"
+msgstr "Kochzeit (Min.)"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "Servings"
+msgstr "Portionen"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "Rating (1\xe2\x80\x935)"
+msgstr "Bewertung (1\xe2\x80\x935)"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "Reviewed Product / Service"
+msgstr "Bewertetes Produkt / Dienstleistung"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "Start Date"
+msgstr "Startdatum"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "End Date (optional)"
+msgstr "Enddatum (optional)"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "Location or URL"
+msgstr "Ort oder URL"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "Online Event"
+msgstr "Online-Veranstaltung"
+
+#: includes/Admin/views/schema-meta-box.php
+msgid "Post not found."
+msgstr "Beitrag nicht gefunden."
+
+# --- Keyword Analysis Checks ---
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Keyword Density"
+msgstr "Keyword-Dichte"
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Keyword found in title."
+msgstr "Keyword im Titel gefunden."
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Keyword not found in title."
+msgstr "Keyword nicht im Titel gefunden."
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Keyword found in subheading."
+msgstr "Keyword in Zwischenüberschrift gefunden."
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Keyword not found in any H2-H6."
+msgstr "Keyword in keiner H2-H6 gefunden."
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Keyword found in URL."
+msgstr "Keyword in URL gefunden."
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Keyword not found in URL."
+msgstr "Keyword nicht in URL gefunden."
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Keyword found in meta description."
+msgstr "Keyword in Meta-Beschreibung gefunden."
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Keyword not found in meta description."
+msgstr "Keyword nicht in Meta-Beschreibung gefunden."
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Meta description is empty."
+msgstr "Meta-Beschreibung ist leer."
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Keyword found in first paragraph."
+msgstr "Keyword im ersten Absatz gefunden."
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Keyword not found in first paragraph."
+msgstr "Keyword nicht im ersten Absatz gefunden."
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Keyword found in last paragraph."
+msgstr "Keyword im letzten Absatz gefunden."
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Keyword not found in last paragraph."
+msgstr "Keyword nicht im letzten Absatz gefunden."
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Keyword found in excerpt."
+msgstr "Keyword im Textauszug gefunden."
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Keyword not found in excerpt."
+msgstr "Keyword nicht im Textauszug gefunden."
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Excerpt is empty."
+msgstr "Textauszug ist leer."
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Keyword found in image alt text."
+msgstr "Keyword im Bild-Alt-Text gefunden."
+
+#: includes/Features/KeywordAnalysis.php
+msgid "No image contains keyword in alt text."
+msgstr "Kein Bild enthält das Keyword im Alt-Text."
+
+#: includes/Features/KeywordAnalysis.php
+msgid "No images found."
+msgstr "Keine Bilder gefunden."
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Keyword found in image title or caption."
+msgstr "Keyword im Bildtitel oder Beschriftung gefunden."
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Keyword not found in any image title or caption."
+msgstr "Keyword in keinem Bildtitel oder Beschriftung gefunden."
+
+#: includes/Features/KeywordAnalysis.php
+msgid "No paragraphs found."
+msgstr "Keine Absätze gefunden."
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Keyword not found in content."
+msgstr "Keyword nicht im Inhalt gefunden."
+
+#: includes/Features/KeywordAnalysis.php
+msgid "URL / Slug"
+msgstr "URL / Slug"
+
+#: includes/Features/KeywordAnalysis.php
+msgid "First Paragraph"
+msgstr "Erster Absatz"
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Last Paragraph"
+msgstr "Letzter Absatz"
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Image Alt Texts"
+msgstr "Bild-Alt-Texte"
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Image Title/Caption"
+msgstr "Bildtitel / Beschriftung"
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Excerpt"
+msgstr "Textauszug"
+
+#: includes/Features/KeywordAnalysis.php
+msgid "Meta Description"
+msgstr "Meta-Beschreibung"
+
+#: includes/Features/KeywordAnalysis.php
+msgid "FAQ"
+msgstr "FAQ"
+
+#: includes/Features/KeywordAnalysis.php
+#, php-format
+msgid "%1$.1f%% (target: %2$.1f%%)"
+msgstr "%1$.1f %% (Ziel: %2$.1f %%)"
+
+#: includes/Admin/views/geo.php
+msgid "The GEO block will not be generated automatically until an API key is configured and AI generation is enabled."
+msgstr "Der GEO-Block wird erst automatisch generiert, wenn ein API-Schlüssel konfiguriert und die KI-Generierung aktiviert ist."
+
+#: includes/Admin/views/geo.php
+msgid "Variables: {title}, {content}, {language}"
+msgstr "Variablen: {title}, {content}, {language}"
+
+#: includes/Admin/views/geo.php
+#, php-format
+msgid "Want to customise further? <a href=\"%s\" target=\"_blank\" rel=\"noopener\">Learn how to style the block via your theme &rarr;</a>"
+msgstr "Mehr anpassen? <a href=\"%s\" target=\"_blank\" rel=\"noopener\">Erfahre, wie du den Block per Theme stylen kannst &rarr;</a>"
+
+#: includes/Admin/views/geo.php
+msgid "Left border stripe and expand arrow colour. Leave empty for the default blue. Not used by the Minimal theme."
+msgstr "Farbe des linken Rands und Expand-Pfeils. Leer lassen für Standard-Blau. Wird vom Minimal-Theme nicht verwendet."
+
+#: includes/Admin/views/geo.php
+msgid "Light \xe2\x80\x94 clean card with a blue accent. Dark \xe2\x80\x94 same for dark-mode sites. Minimal \xe2\x80\x94 borderless, left stripe only. Brezn \xe2\x80\x94 Brezn blue with diamond header pattern."
+msgstr "Hell \xe2\x80\x94 klare Karte mit blauem Akzent. Dunkel \xe2\x80\x94 dasselbe f\xc3\xbcr Dark-Mode-Seiten. Minimal \xe2\x80\x94 rahmenlos, nur linker Streifen. Brezn \xe2\x80\x94 Brezn-Blau mit Rautenmuster."
+
+#: includes/Admin/views/bulk.php
+#, php-format
+msgid "No AI provider connected \xe2\x80\x94 descriptions will be generated from content without AI (fallback mode). <a href=\"%s\">Configure a provider \xe2\x86\x92</a>"
+msgstr "Kein KI-Anbieter verbunden \xe2\x80\x94 Beschreibungen werden ohne KI aus dem Inhalt generiert (Fallback-Modus). <a href=\"%s\">Anbieter konfigurieren \xe2\x86\x92</a>"

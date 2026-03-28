@@ -1,6 +1,10 @@
 <?php
 namespace BreznGEO\Helpers;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class FallbackMeta {
 	private const MIN = 150;
 	private const MAX = 160;

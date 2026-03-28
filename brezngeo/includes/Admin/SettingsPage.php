@@ -1,6 +1,10 @@
 <?php
 namespace BreznGEO\Admin;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 use BreznGEO\Helpers\KeyVault;
 
 class SettingsPage {

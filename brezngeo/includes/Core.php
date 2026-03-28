@@ -1,6 +1,10 @@
 <?php
 namespace BreznGEO;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class Core {
 	private static ?Core $instance = null;
 

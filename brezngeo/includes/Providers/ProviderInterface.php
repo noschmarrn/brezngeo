@@ -1,6 +1,10 @@
 <?php
 namespace BreznGEO\Providers;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 interface ProviderInterface {
 	/** Unique machine-readable ID, e.g. 'openai' */
 	public function getId(): string;

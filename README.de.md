@@ -3,7 +3,7 @@
 ![PHP 8.0+](https://img.shields.io/badge/PHP-8.0%2B-blue)
 ![WordPress 6.0+](https://img.shields.io/badge/WordPress-6.0%2B-21759b)
 ![License: GPL-2.0](https://img.shields.io/badge/License-GPL--2.0--or--later-green)
-![Version](https://img.shields.io/badge/Version-1.2.0-orange)
+![Version](https://img.shields.io/badge/Version-1.2.1-orange)
 ![Tests](https://img.shields.io/badge/Tests-158%20passing-brightgreen)
 
 🇬🇧 [English version → README.md](README.md)

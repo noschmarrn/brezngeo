@@ -1,6 +1,10 @@
 <?php
 namespace BreznGEO\Providers;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class OpenAIProvider implements ProviderInterface {
 	private const API_URL = 'https://api.openai.com/v1/chat/completions';
 

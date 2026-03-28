@@ -1,6 +1,10 @@
 <?php
 namespace BreznGEO\Helpers;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class TokenEstimator {
 	/**
 	 * Pricing per 1k tokens [provider][model][input|output]

@@ -1,6 +1,10 @@
 <?php
 namespace BreznGEO\Helpers;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class BulkQueue {
 	private const LOCK_KEY = 'brezngeo_bulk_running';
 	private const LOCK_TTL = 900; // 15 minutes

@@ -1,6 +1,10 @@
 <?php
 namespace BreznGEO\Helpers;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Obfuscates API keys for database storage using XOR with a derived WP-salt key.
  *

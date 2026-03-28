@@ -3,7 +3,7 @@ Contributors: mifupadev
 Tags: seo, ai, meta description, schema, llms.txt
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 Requires PHP: 8.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -224,6 +224,11 @@ No data is transmitted during normal page loads or to visitors.
 
 == Changelog ==
 
+= 1.2.1 =
+* Security: Added ABSPATH direct access guards to all PHP class files.
+* i18n: Complete German translation — all 394 UI strings now translated.
+* i18n: Regenerated .po/.mo/.pot translation files.
+
 = 1.2.0 =
 * New: Keyword Analysis meta box in the post editor — checks keyword usage across title, headings, density, image alts, meta description, slug, first/last paragraph, image title/caption, and excerpt.
 * New: Primary and secondary keyword support with configurable minimum occurrences.
@@ -259,6 +264,9 @@ No data is transmitted during normal page loads or to visitors.
 * `brezngeo_prompt` filter and `brezngeo_meta_saved` action hooks for developers.
 
 == Upgrade Notice ==
+
+= 1.2.1 =
+Adds ABSPATH security guards to all files and completes German translation.
 
 = 1.2.0 =
 Adds Keyword Analysis: real-time keyword checks in the post editor with optional AI-powered suggestions.

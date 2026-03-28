@@ -3,7 +3,7 @@
  * Plugin Name:       BreznGEO
  * Plugin URI:        https://brezngeo.com/
  * Description:       AI-powered meta descriptions, GEO structured data, and llms.txt for WordPress.
- * Version:           1.2.0
+ * Version:           1.2.1
  * Requires at least: 6.0
  * Requires PHP:      8.0
  * Author:            NoSchmarrn.dev
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'BREZNGEO_VERSION', '1.2.0' );
+define( 'BREZNGEO_VERSION', '1.2.1' );
 define( 'BREZNGEO_FILE', __FILE__ );
 define( 'BREZNGEO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BREZNGEO_URL', plugin_dir_url( __FILE__ ) );

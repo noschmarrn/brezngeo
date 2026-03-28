@@ -1,6 +1,10 @@
 <?php
 namespace BreznGEO;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 use BreznGEO\Providers\ProviderInterface;
 
 class ProviderRegistry {
