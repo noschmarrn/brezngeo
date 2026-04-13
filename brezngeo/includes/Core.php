@@ -16,6 +16,7 @@ class Core {
 	}
 
 	public function init(): void {
+		load_plugin_textdomain( 'brezngeo', false, dirname( plugin_basename( BREZNGEO_FILE ) ) . '/languages' );
 		$this->load_dependencies();
 		$this->register_hooks();
 	}

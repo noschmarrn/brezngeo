@@ -3,7 +3,7 @@ Contributors: mifupadev
 Tags: seo, ai, meta description, schema, llms.txt
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 Requires PHP: 8.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -224,6 +224,9 @@ No data is transmitted during normal page loads or to visitors.
 
 == Changelog ==
 
+= 1.2.2 =
+* i18n: Added explicit load_plugin_textdomain() call for reliable translation loading on ClassicPress and other WordPress derivatives.
+
 = 1.2.1 =
 * Security: Added ABSPATH direct access guards to all PHP class files.
 * i18n: Complete German translation — all 394 UI strings now translated.
@@ -264,6 +267,9 @@ No data is transmitted during normal page loads or to visitors.
 * `brezngeo_prompt` filter and `brezngeo_meta_saved` action hooks for developers.
 
 == Upgrade Notice ==
+
+= 1.2.2 =
+Fixes translation loading on ClassicPress and other WordPress derivatives.
 
 = 1.2.1 =
 Adds ABSPATH security guards to all files and completes German translation.
