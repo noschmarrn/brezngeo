@@ -1617,3 +1617,51 @@ msgstr "Light \xe2\x80\x94 clean card with a blue accent. Dark \xe2\x80\x94 same
 #, php-format
 msgid "No AI provider connected \xe2\x80\x94 descriptions will be generated from content without AI (fallback mode). <a href=\"%s\">Configure a provider \xe2\x86\x92</a>"
 msgstr "No AI provider connected \xe2\x80\x94 descriptions will be generated from content without AI (fallback mode). <a href=\"%s\">Configure a provider \xe2\x86\x92</a>"
+
+#: includes/Admin/views/partials/openrouter-model-field.php
+msgid "Load models"
+msgstr "Load models"
+
+#: includes/Admin/views/partials/openrouter-model-field.php
+msgid "Custom model ID\xe2\x80\xa6"
+msgstr "Custom model ID\xe2\x80\xa6"
+
+#: includes/Admin/views/partials/openrouter-model-field.php
+msgid "Custom model ID:"
+msgstr "Custom model ID:"
+
+#: includes/Admin/views/partials/openrouter-model-field.php
+msgid "e.g. anthropic/claude-opus-4.7"
+msgstr "e.g. anthropic/claude-opus-4.7"
+
+#: includes/Admin/views/partials/openrouter-model-field.php
+msgid "Learn how to find OpenRouter model IDs \xe2\x86\x92"
+msgstr "Learn how to find OpenRouter model IDs \xe2\x86\x92"
+
+#: includes/Admin/views/partials/openrouter-model-field.php
+msgid "Browse all OpenRouter models \xe2\x86\x92"
+msgstr "Browse all OpenRouter models \xe2\x86\x92"
+
+#: includes/Admin/views/partials/openrouter-model-field.php
+msgid "No models loaded yet \xe2\x80\x94 click \"Load models\""
+msgstr "No models loaded yet \xe2\x80\x94 click \"Load models\""
+
+#: includes/Admin/views/partials/openrouter-model-field.php
+msgid "Pricing (automatically from OpenRouter, per 1M tokens):"
+msgstr "Pricing (automatically from OpenRouter, per 1M tokens):"
+
+#: includes/Admin/views/partials/openrouter-model-field.php
+msgid "Pricing unknown for custom models \xe2\x80\x94 will be populated after you click \"Load models\"."
+msgstr "Pricing unknown for custom models \xe2\x80\x94 will be populated after you click \"Load models\"."
+
+#: includes/Admin/views/partials/openrouter-model-field.php
+msgid "Click \"Load models\" to fetch pricing from OpenRouter."
+msgstr "Click \"Load models\" to fetch pricing from OpenRouter."
+
+#: includes/Providers/OpenRouterProvider.php
+msgid "custom"
+msgstr "custom"
+
+#: includes/Admin/ProviderPage.php
+msgid "No models returned by OpenRouter."
+msgstr "No models returned by OpenRouter."

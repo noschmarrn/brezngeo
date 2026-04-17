@@ -1617,3 +1617,51 @@ msgstr ""
 #, php-format
 msgid "No AI provider connected \xe2\x80\x94 descriptions will be generated from content without AI (fallback mode). <a href=\"%s\">Configure a provider \xe2\x86\x92</a>"
 msgstr ""
+
+#: includes/Admin/views/partials/openrouter-model-field.php
+msgid "Load models"
+msgstr ""
+
+#: includes/Admin/views/partials/openrouter-model-field.php
+msgid "Custom model ID\xe2\x80\xa6"
+msgstr ""
+
+#: includes/Admin/views/partials/openrouter-model-field.php
+msgid "Custom model ID:"
+msgstr ""
+
+#: includes/Admin/views/partials/openrouter-model-field.php
+msgid "e.g. anthropic/claude-opus-4.7"
+msgstr ""
+
+#: includes/Admin/views/partials/openrouter-model-field.php
+msgid "Learn how to find OpenRouter model IDs \xe2\x86\x92"
+msgstr ""
+
+#: includes/Admin/views/partials/openrouter-model-field.php
+msgid "Browse all OpenRouter models \xe2\x86\x92"
+msgstr ""
+
+#: includes/Admin/views/partials/openrouter-model-field.php
+msgid "No models loaded yet \xe2\x80\x94 click \"Load models\""
+msgstr ""
+
+#: includes/Admin/views/partials/openrouter-model-field.php
+msgid "Pricing (automatically from OpenRouter, per 1M tokens):"
+msgstr ""
+
+#: includes/Admin/views/partials/openrouter-model-field.php
+msgid "Pricing unknown for custom models \xe2\x80\x94 will be populated after you click \"Load models\"."
+msgstr ""
+
+#: includes/Admin/views/partials/openrouter-model-field.php
+msgid "Click \"Load models\" to fetch pricing from OpenRouter."
+msgstr ""
+
+#: includes/Providers/OpenRouterProvider.php
+msgid "custom"
+msgstr ""
+
+#: includes/Admin/ProviderPage.php
+msgid "No models returned by OpenRouter."
+msgstr ""

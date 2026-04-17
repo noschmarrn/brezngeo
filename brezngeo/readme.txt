@@ -3,7 +3,7 @@ Contributors: mifupadev
 Tags: seo, ai, meta description, schema, llms.txt
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 1.2.2
+Stable tag: 1.3.0
 Requires PHP: 8.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -69,12 +69,13 @@ Finds all published posts without a meta description (including descriptions set
 
 = Multi-Provider AI Support =
 
-Choose from four AI providers and switch at any time without losing your settings:
+Choose from five AI providers — or access 600+ models through a single OpenRouter API key. Switch at any time without losing your settings:
 
 * OpenAI (GPT-4.1, GPT-4o, GPT-4o mini, and more)
 * Anthropic Claude (Claude 3.5 Sonnet, Claude 3 Haiku, and more)
 * Google Gemini (Gemini 2.0 Flash, Gemini 1.5 Pro, and more)
 * xAI Grok (Grok 3, Grok 3 mini, and more)
+* OpenRouter (access to 600+ models including Claude, GPT, Gemini, Llama, Mistral, DeepSeek, and more through a single API key)
 
 = Schema.org Enhancer (GEO) =
 
@@ -140,7 +141,7 @@ An API key is required for AI-generated meta descriptions. Without one, the plug
 
 = How much does it cost to generate meta descriptions? =
 
-Cost depends on the AI provider and model you choose. A single meta description typically uses fewer than 1,500 tokens (input + output combined). As a rough reference, 1,000 descriptions with GPT-4o mini has cost around $0.50–$1.00 at recent rates — but AI provider pricing changes over time. The AI Provider settings page links directly to the current pricing page for each supported provider.
+Cost depends on the AI provider and model you choose. A single meta description typically uses fewer than 1,500 tokens (input + output combined). As a rough reference, 1,000 descriptions with GPT-4o mini has cost around $0.50–$1.00 at recent rates — but AI provider pricing changes over time. The AI Provider settings page links directly to the current pricing page for each supported provider. For OpenRouter, per-model pricing is fetched directly from the API and displayed in-plugin after you click "Load models".
 
 = Are my API keys stored securely? =
 
@@ -222,7 +223,20 @@ No data is transmitted during normal page loads or to visitors.
 * Privacy policy: https://x.ai/privacy-policy
 * Terms of use: https://x.ai/legal/terms-of-service
 
+= OpenRouter =
+* Data sent (only when selected as active provider): Post title and content excerpt (meta descriptions, GEO Block); candidate post titles and URLs (link suggestions); post content and keyword (keyword analysis).
+* Additional request (only when you click "Load models" in the provider settings): a list of available models is fetched from the OpenRouter models API. No user data is sent with this request.
+* API endpoints: `https://openrouter.ai/api/v1/chat/completions` (text generation), `https://openrouter.ai/api/v1/models` (model list, on demand).
+* Note: OpenRouter is a routing aggregator. The actual AI model selected by the user may be served by OpenAI, Anthropic, Google, Meta, xAI, Mistral, DeepSeek or another upstream provider. See OpenRouter's privacy policy for details on upstream routing.
+* Privacy policy: https://openrouter.ai/privacy
+* Terms of use: https://openrouter.ai/terms
+
 == Changelog ==
+
+= 1.3.0 =
+* New: OpenRouter as a fifth AI provider — access to 600+ models (Claude, GPT, Gemini, Llama, Mistral, DeepSeek, and more) through a single API key.
+* New: On-demand model loader fetches OpenRouter's curated Marketing/SEO model list with live per-model pricing.
+* New: Custom model ID field lets you route to any OpenRouter model (e.g. anthropic/claude-opus-4.7) without waiting for a plugin update.
 
 = 1.2.2 =
 * i18n: Added explicit load_plugin_textdomain() call for reliable translation loading on ClassicPress and other WordPress derivatives.

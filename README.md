@@ -3,8 +3,8 @@
 ![PHP 8.0+](https://img.shields.io/badge/PHP-8.0%2B-blue)
 ![WordPress 6.0+](https://img.shields.io/badge/WordPress-6.0%2B-21759b)
 ![License: GPL-2.0](https://img.shields.io/badge/License-GPL--2.0--or--later-green)
-![Version](https://img.shields.io/badge/Version-1.2.2-orange)
-![Tests](https://img.shields.io/badge/Tests-158%20passing-brightgreen)
+![Version](https://img.shields.io/badge/Version-1.3.0-orange)
+![Tests](https://img.shields.io/badge/Tests-163%20passing-brightgreen)
 
 🇩🇪 [Deutsche Version → README.de.md](README.de.md)
 
@@ -26,7 +26,7 @@ The AI wave made it worse. Plugins started offering "AI-powered" features — bu
 
 BreznGEO takes a different approach:
 
-- **Direct API access.** You store your own key from OpenAI, Anthropic, Google, or xAI. BreznGEO calls the API directly. No middleman, no margin, no data passing through third-party servers.
+- **Direct API access.** You store your own key from OpenAI, Anthropic, Google, xAI, or OpenRouter (600+ models through one key). BreznGEO calls the API directly. No middleman, no margin, no data passing through third-party servers.
 - **Clear output, not noise.** Meta descriptions, structured data, GEO content blocks, bot management. No readability scores, no keyword density meters, no upsell banners.
 - **No subscription.** GPL-2.0. Free to use on any number of sites. The only costs are API usage — typically fractions of a cent per post.
 - **No telemetry.** BreznGEO sends no data home. No usage tracking, no remote logging, no analytics leaving your server.
@@ -104,12 +104,13 @@ brezngeo/
 │   │   ├── KeywordVariants.php   # Locale-aware keyword variant generation (EN/DE)
 │   │   └── TokenEstimator.php    # Rough token estimate for cost preview in bulk
 │   └── Providers/
-│       ├── ProviderInterface.php # Interface: getId, getName, getModels, testConnection, generateText
-│       ├── ProviderRegistry.php  # Registry pattern: register and retrieve providers
-│       ├── AnthropicProvider.php # Claude API (Messages API)
-│       ├── GeminiProvider.php    # Google Gemini (generateContent API)
-│       ├── GrokProvider.php      # xAI Grok (OpenAI-compatible endpoint)
-│       └── OpenAIProvider.php    # OpenAI GPT (Chat Completions API)
+│       ├── ProviderInterface.php    # Interface: getId, getName, getModels, testConnection, generateText
+│       ├── ProviderRegistry.php     # Registry pattern: register and retrieve providers
+│       ├── AnthropicProvider.php    # Claude API (Messages API)
+│       ├── GeminiProvider.php       # Google Gemini (generateContent API)
+│       ├── GrokProvider.php         # xAI Grok (OpenAI-compatible endpoint)
+│       ├── OpenAIProvider.php       # OpenAI GPT (Chat Completions API)
+│       └── OpenRouterProvider.php   # OpenRouter (600+ models via one OpenAI-compatible API)
 └── vendor/                       # Composer dependencies (production only)
 ```
 
@@ -444,7 +445,7 @@ The crawler log stores IP addresses exclusively as SHA-256 hashes. The original 
 
 ## AI Providers
 
-BreznGEO supports four providers, all implementing the same `ProviderInterface`:
+BreznGEO supports five providers, all implementing the same `ProviderInterface`:
 
 | Provider | Class | API Base URL |
 |---|---|---|
@@ -452,6 +453,9 @@ BreznGEO supports four providers, all implementing the same `ProviderInterface`:
 | Anthropic | `AnthropicProvider` | `https://api.anthropic.com/v1/messages` |
 | Google Gemini | `GeminiProvider` | `https://generativelanguage.googleapis.com/...` |
 | xAI Grok | `GrokProvider` | `https://api.x.ai/v1/chat/completions` |
+| OpenRouter | `OpenRouterProvider` | `https://openrouter.ai/api/v1/chat/completions` |
+
+**About OpenRouter:** A single API key opens access to 600+ models from OpenAI, Anthropic, Google, Meta, Mistral, xAI, DeepSeek and others. The curated Marketing/SEO selection is fetched on demand ("Load models" button) and cached for 12 hours. Pricing is read from OpenRouter automatically. Custom model IDs (e.g. `anthropic/claude-opus-4.7`) are supported.
 
 ### Adding a New Provider
 
@@ -525,6 +529,7 @@ All endpoints are exclusively accessible to logged-in users with `manage_options
 | `brezngeo_regen_meta` | `MetaEditorBox::ajax_regen` | Regenerate meta description for a single post |
 | `brezngeo_test_connection` | `ProviderPage::ajax_test_connection` | Test API key and connection |
 | `brezngeo_get_default_prompt` | `ProviderPage::ajax_get_default_prompt` | Reset to default prompt |
+| `brezngeo_openrouter_load_models` | `ProviderPage::ajax_openrouter_load_models` | Fetch curated OpenRouter marketing/SEO model list (12 h transient cache) |
 | `brezngeo_link_analysis` | `LinkAnalysis::ajax_analyse` | Run link analysis for the dashboard |
 | `brezngeo_link_suggestions` | `LinkSuggest::ajax_suggest` | Return top-10 internal link suggestions for current post |
 | `brezngeo_geo_generate` | `GeoEditorBox::ajax_generate` | Generate GEO block for a single post |
@@ -576,7 +581,7 @@ The plugin has no JavaScript build step. All assets under `assets/` are direct J
 | Caching | WordPress transients (llms.txt, link analysis, bulk lock) |
 | Frontend | Vanilla JS + jQuery (WordPress-bundled), no build step |
 | i18n | `.pot` file, text domain `brezngeo` |
-| Tests | PHPUnit (158 tests, 301 assertions) |
+| Tests | PHPUnit (163 tests, 311 assertions) |
 | Coding standard | WordPress PHPCS |
 | License | GPL-2.0-or-later |
 

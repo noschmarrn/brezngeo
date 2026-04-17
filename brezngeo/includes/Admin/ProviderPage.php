@@ -7,13 +7,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use BreznGEO\ProviderRegistry;
 use BreznGEO\Helpers\KeyVault;
+use BreznGEO\Providers\OpenRouterProvider;
 
 class ProviderPage {
 	private const PRICING_URLS = array(
-		'openai'    => 'https://openai.com/de-DE/api/pricing',
-		'anthropic' => 'https://platform.claude.com/docs/en/about-claude/pricing',
-		'gemini'    => 'https://ai.google.dev/gemini-api/docs/pricing?hl=de',
-		'grok'      => 'https://docs.x.ai/developers/models',
+		'openai'     => 'https://openai.com/de-DE/api/pricing',
+		'anthropic'  => 'https://platform.claude.com/docs/en/about-claude/pricing',
+		'gemini'     => 'https://ai.google.dev/gemini-api/docs/pricing?hl=de',
+		'grok'       => 'https://docs.x.ai/developers/models',
+		'openrouter' => 'https://openrouter.ai/models',
 	);
 
 	public function register(): void {
@@ -21,6 +23,7 @@ class ProviderPage {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
 		add_action( 'wp_ajax_brezngeo_test_connection', array( $this, 'ajax_test_connection' ) );
 		add_action( 'wp_ajax_brezngeo_get_default_prompt', array( $this, 'ajax_get_default_prompt' ) );
+		add_action( 'wp_ajax_brezngeo_openrouter_load_models', array( $this, 'ajax_openrouter_load_models' ) );
 	}
 
 	public function register_settings(): void {
@@ -74,7 +77,13 @@ class ProviderPage {
 
 		$clean['models'] = array();
 		foreach ( ( $input['models'] ?? array() ) as $provider_id => $model ) {
-			$clean['models'][ sanitize_key( $provider_id ) ] = sanitize_text_field( $model );
+			$pid   = sanitize_key( $provider_id );
+			$value = sanitize_text_field( $model );
+			if ( $pid === 'openrouter' && $value === '__custom__' ) {
+				$custom_raw = (string) ( $input['openrouter_custom_model'] ?? '' );
+				$value      = sanitize_text_field( $custom_raw );
+			}
+			$clean['models'][ $pid ] = $value;
 		}
 
 		$clean['costs'] = array();
@@ -89,6 +98,18 @@ class ProviderPage {
 						'output' => max( 0.0, $out ),
 					);
 				}
+			}
+		}
+
+		$selected_openrouter = $clean['models']['openrouter'] ?? '';
+		if ( $selected_openrouter !== '' ) {
+			$cached = get_transient( \BreznGEO\Providers\OpenRouterProvider::MODELS_CACHE );
+			if ( is_array( $cached ) && isset( $cached[ $selected_openrouter ] ) ) {
+				$meta = $cached[ $selected_openrouter ];
+				$clean['costs']['openrouter'][ $selected_openrouter ] = array(
+					'input'  => (float) ( $meta['input_cost'] ?? 0 ),
+					'output' => (float) ( $meta['output_cost'] ?? 0 ),
+				);
 			}
 		}
 
@@ -124,6 +145,59 @@ class ProviderPage {
 			wp_send_json_error();
 		}
 		wp_send_json_success( SettingsPage::getDefaultPrompt() );
+	}
+
+	public function ajax_openrouter_load_models(): void {
+		check_ajax_referer( 'brezngeo_admin', 'nonce' );
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( __( 'Insufficient permissions.', 'brezngeo' ) );
+		}
+
+		$response = wp_remote_get(
+			OpenRouterProvider::MODELS_URL . '?category=marketing',
+			array(
+				'timeout' => 15,
+				'headers' => array(
+					'Accept'       => 'application/json',
+					'HTTP-Referer' => home_url( '/' ),
+					'X-Title'      => 'BreznGEO',
+				),
+			)
+		);
+
+		if ( is_wp_error( $response ) ) {
+			wp_send_json_error( $response->get_error_message() );
+		}
+
+		$code = wp_remote_retrieve_response_code( $response );
+		$body = json_decode( wp_remote_retrieve_body( $response ), true );
+		if ( $code !== 200 || ! isset( $body['data'] ) || ! is_array( $body['data'] ) ) {
+			$msg = $body['error']['message'] ?? "HTTP $code";
+			wp_send_json_error( $msg );
+		}
+
+		$normalized = array();
+		foreach ( $body['data'] as $model ) {
+			if ( ! is_array( $model ) || empty( $model['id'] ) ) {
+				continue;
+			}
+			$id                = (string) $model['id'];
+			$label             = isset( $model['name'] ) && is_string( $model['name'] ) && $model['name'] !== '' ? (string) $model['name'] : $id;
+			$input_per_token   = isset( $model['pricing']['prompt'] ) ? (float) $model['pricing']['prompt'] : 0.0;
+			$output_per_token  = isset( $model['pricing']['completion'] ) ? (float) $model['pricing']['completion'] : 0.0;
+			$normalized[ $id ] = array(
+				'label'       => $label,
+				'input_cost'  => round( $input_per_token * 1_000_000, 4 ),
+				'output_cost' => round( $output_per_token * 1_000_000, 4 ),
+			);
+		}
+
+		if ( empty( $normalized ) ) {
+			wp_send_json_error( __( 'No models returned by OpenRouter.', 'brezngeo' ) );
+		}
+
+		set_transient( OpenRouterProvider::MODELS_CACHE, $normalized, 12 * HOUR_IN_SECONDS );
+		wp_send_json_success( $normalized );
 	}
 
 	public function render(): void {

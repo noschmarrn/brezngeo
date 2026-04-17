@@ -33,6 +33,68 @@ jQuery( function ( $ ) {
         } );
     } );
 
+    // OpenRouter: toggle custom-model field when dropdown value is __custom__
+    function updateOpenRouterCustom() {
+        var val = $( '#brezngeo-openrouter-model' ).val();
+        $( '.brezngeo-openrouter-custom-wrap' ).toggle( val === '__custom__' );
+    }
+    $( document ).on( 'change', '#brezngeo-openrouter-model', function () {
+        updateOpenRouterCustom();
+        var $opt  = $( this ).find( 'option:selected' );
+        var inVal = $opt.data( 'input' );
+        var outVal = $opt.data( 'output' );
+        if ( inVal !== undefined && inVal !== '' ) {
+            $( '#brezngeo-openrouter-pricing' ).html(
+                'Input $<span class="or-price-input">' + Number( inVal ).toFixed( 4 ) +
+                '</span> / 1M \u00b7 Output $<span class="or-price-output">' + Number( outVal ).toFixed( 4 ) +
+                '</span> / 1M'
+            );
+        }
+    } );
+    if ( $( '#brezngeo-openrouter-model' ).length ) updateOpenRouterCustom();
+
+    // OpenRouter: "Load models" button — fetches curated Marketing/SEO list from OpenRouter
+    $( document ).on( 'click', '.brezngeo-openrouter-load-btn', function () {
+        var btn    = $( this );
+        var status = $( '.brezngeo-openrouter-load-status' );
+        var select = $( '#brezngeo-openrouter-model' );
+
+        btn.prop( 'disabled', true );
+        status.removeClass( 'success error' ).text( brezngeoAdmin.testing );
+
+        $.post( brezngeoAdmin.ajaxUrl, {
+            action: 'brezngeo_openrouter_load_models',
+            nonce:  brezngeoAdmin.nonce,
+        } ).done( function ( res ) {
+            if ( ! res.success ) {
+                status.addClass( 'error' ).text( '\u2717 ' + res.data );
+                return;
+            }
+            var models   = res.data;
+            var previous = select.val();
+            // Preserve the __custom__ option at the bottom
+            select.find( 'option' ).not( '[value="__custom__"]' ).remove();
+            select.find( 'option[value=""]' ).remove();
+            $.each( models, function ( id, meta ) {
+                var opt = $( '<option></option>' )
+                    .val( id )
+                    .text( meta.label || id )
+                    .attr( 'data-input', meta.input_cost )
+                    .attr( 'data-output', meta.output_cost );
+                select.find( 'option[value="__custom__"]' ).before( opt );
+            } );
+            if ( previous && select.find( 'option[value="' + previous.replace( /"/g, '\\"' ) + '"]' ).length ) {
+                select.val( previous );
+            }
+            select.trigger( 'change' );
+            status.addClass( 'success' ).text( '\u2713 ' + Object.keys( models ).length );
+        } ).fail( function () {
+            status.addClass( 'error' ).text( '\u2717 ' + brezngeoAdmin.networkError );
+        } ).always( function () {
+            btn.prop( 'disabled', false );
+        } );
+    } );
+
     $( '#brezngeo-reset-prompt' ).on( 'click', function () {
         if ( ! confirm( brezngeoAdmin.resetConfirm ) ) return;
         $.post( brezngeoAdmin.ajaxUrl, {

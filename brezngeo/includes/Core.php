@@ -28,6 +28,7 @@ class Core {
 		require_once BREZNGEO_DIR . 'includes/Providers/AnthropicProvider.php';
 		require_once BREZNGEO_DIR . 'includes/Providers/GeminiProvider.php';
 		require_once BREZNGEO_DIR . 'includes/Providers/GrokProvider.php';
+		require_once BREZNGEO_DIR . 'includes/Providers/OpenRouterProvider.php';
 		require_once BREZNGEO_DIR . 'includes/Helpers/KeyVault.php';
 		require_once BREZNGEO_DIR . 'includes/Helpers/TokenEstimator.php';
 		require_once BREZNGEO_DIR . 'includes/Helpers/FallbackMeta.php';
@@ -65,6 +66,7 @@ class Core {
 		$registry->register( new Providers\AnthropicProvider() );
 		$registry->register( new Providers\GeminiProvider() );
 		$registry->register( new Providers\GrokProvider() );
+		$registry->register( new Providers\OpenRouterProvider() );
 
 		( new Features\MetaGenerator() )->register();
 		( new Features\SchemaEnhancer() )->register();

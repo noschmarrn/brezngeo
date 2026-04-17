@@ -51,7 +51,7 @@ class AdminMenu {
 		wp_safe_redirect(
 			add_query_arg(
 				array(
-					'page'          => 'brezngeo',
+					'page'           => 'brezngeo',
 					'brezngeo-saved' => '1',
 				),
 				admin_url( 'admin.php' )
@@ -207,8 +207,8 @@ class AdminMenu {
 			$provider = $prov_obj ? $prov_obj->getName() : $provider_key;
 		}
 
-		$post_types = $settings['meta_post_types'] ?? array( 'post', 'page' );
-		$meta_stats = $this->get_meta_stats( $post_types );
+		$post_types      = $settings['meta_post_types'] ?? array( 'post', 'page' );
+		$meta_stats      = $this->get_meta_stats( $post_types );
 		$brezngeo_compat = $this->get_compat_info();
 
 		$brezngeo_show_welcome = $this->should_show_welcome();

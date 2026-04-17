@@ -54,6 +54,9 @@
 						<?php esc_html_e( 'Test connection', 'brezngeo' ); ?>
 					</button>
 					<span class="brezngeo-test-result" id="test-result-<?php echo esc_attr( $id ); ?>"></span>
+					<?php if ( $id === 'openrouter' ) : ?>
+						<?php include BREZNGEO_DIR . 'includes/Admin/views/partials/openrouter-model-field.php'; ?>
+					<?php else : ?>
 					<br><br>
 					<label><?php esc_html_e( 'Model:', 'brezngeo' ); ?></label>
 					<select name="brezngeo_settings[models][<?php echo esc_attr( $id ); ?>]">
@@ -68,23 +71,23 @@
 						</option>
 						<?php endforeach; ?>
 					</select>
-				<?php
+						<?php
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-				$pricing_url = $pricing_urls[ $id ] ?? '';
-				if ( $pricing_url ) :
-					?>
+						$pricing_url = $pricing_urls[ $id ] ?? '';
+						if ( $pricing_url ) :
+							?>
 				<p style="margin-top:8px;">
 					<a href="<?php echo esc_url( $pricing_url ); ?>" target="_blank" rel="noopener noreferrer">
-						<?php esc_html_e( 'View current pricing →', 'brezngeo' ); ?>
+							<?php esc_html_e( 'View current pricing →', 'brezngeo' ); ?>
 					</a>
 				</p>
-<?php endif; ?>
+		<?php endif; ?>
 				<p style="margin-top:12px;"><strong><?php esc_html_e( 'Cost per 1 million tokens (for the Bulk cost overview):', 'brezngeo' ); ?></strong></p>
-				<?php
-				foreach ( $provider->getModels() as $model_id => $model_label ) : // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-					// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-					$saved_costs = $settings['costs'][ $id ][ $model_id ] ?? array();
-					?>
+						<?php
+						foreach ( $provider->getModels() as $model_id => $model_label ) : // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+							// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+							$saved_costs = $settings['costs'][ $id ][ $model_id ] ?? array();
+							?>
 				<div style="margin-bottom:6px;display:flex;align-items:center;gap:12px;">
 					<label style="min-width:180px;font-size:12px;"><?php echo esc_html( $model_label ); ?>:</label>
 					<span>Input $<input type="number" step="0.0001" min="0"
@@ -96,7 +99,8 @@
 						value="<?php echo esc_attr( $saved_costs['output'] ?? '' ); ?>"
 						placeholder="z.B. 0.60" style="width:75px;"> / 1M</span>
 				</div>
-<?php endforeach; ?>
+		<?php endforeach; ?>
+					<?php endif; ?>
 				</td>
 			</tr>
 			<?php endforeach; ?>
