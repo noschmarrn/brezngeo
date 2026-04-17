@@ -74,6 +74,13 @@ class ProviderPage {
 				$clean['api_keys'][ $provider_id ] = $existing['api_keys'][ $provider_id ];
 			}
 		}
+		// Preserve DB-stored keys for providers whose UI field was disabled
+		// (wp-config.php constant override) and therefore never submitted.
+		foreach ( ( $existing['api_keys'] ?? array() ) as $provider_id => $stored ) {
+			if ( ! isset( $clean['api_keys'][ $provider_id ] ) ) {
+				$clean['api_keys'][ $provider_id ] = $stored;
+			}
+		}
 
 		$clean['models'] = array();
 		foreach ( ( $input['models'] ?? array() ) as $provider_id => $model ) {

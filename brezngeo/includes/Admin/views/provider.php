@@ -36,9 +36,26 @@
 				</td>
 			</tr>
 			<?php foreach ( $providers as $id => $provider ) : // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound ?>
+			<?php $locked = ! empty( $settings['api_keys_locked'][ $id ] ); ?>
 			<tr class="brezngeo-provider-row" data-provider="<?php echo esc_attr( $id ); ?>">
 				<th scope="row"><?php echo esc_html( $provider->getName() ); ?> <?php esc_html_e( 'API Key', 'brezngeo' ); ?></th>
 				<td>
+					<?php if ( $locked ) : ?>
+					<span class="brezngeo-key-saved">
+						<?php
+						printf(
+							/* translators: %s: wp-config.php constant name */
+							esc_html__( 'Loaded from wp-config.php: %s', 'brezngeo' ),
+							'<code>BREZNGEO_' . esc_html( strtoupper( $id ) ) . '_KEY</code>'
+						);
+						?>
+					</span><br>
+					<input type="password" value="" placeholder="&#8212;" class="regular-text" disabled>
+					<button type="button" class="button brezngeo-test-btn" data-provider="<?php echo esc_attr( $id ); ?>">
+						<?php esc_html_e( 'Test connection', 'brezngeo' ); ?>
+					</button>
+					<span class="brezngeo-test-result" id="test-result-<?php echo esc_attr( $id ); ?>"></span>
+					<?php else : ?>
 					<?php if ( ! empty( $masked_keys[ $id ] ) ) : ?>
 					<span class="brezngeo-key-saved">
 						<?php esc_html_e( 'Saved:', 'brezngeo' ); ?> <code><?php echo esc_html( $masked_keys[ $id ] ); ?></code>
@@ -54,6 +71,7 @@
 						<?php esc_html_e( 'Test connection', 'brezngeo' ); ?>
 					</button>
 					<span class="brezngeo-test-result" id="test-result-<?php echo esc_attr( $id ); ?>"></span>
+					<?php endif; ?>
 					<?php if ( $id === 'openrouter' ) : ?>
 						<?php include BREZNGEO_DIR . 'includes/Admin/views/partials/openrouter-model-field.php'; ?>
 					<?php else : ?>

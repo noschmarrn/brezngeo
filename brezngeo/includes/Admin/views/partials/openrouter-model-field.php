@@ -9,31 +9,31 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$or_models           = $provider->getModels();
-$or_saved_model      = $settings['models']['openrouter'] ?? '';
-$or_is_custom        = $or_saved_model !== '' && ! array_key_exists( $or_saved_model, $or_models );
-$or_cached_pricing   = get_transient( \BreznGEO\Providers\OpenRouterProvider::MODELS_CACHE );
-$or_cache_is_array   = is_array( $or_cached_pricing );
-$or_selected_pricing = ( $or_cache_is_array && isset( $or_cached_pricing[ $or_saved_model ] ) )
-	? $or_cached_pricing[ $or_saved_model ]
+$brezngeo_or_models           = $provider->getModels();
+$brezngeo_or_saved_model      = $settings['models']['openrouter'] ?? '';
+$brezngeo_or_is_custom        = $brezngeo_or_saved_model !== '' && ! array_key_exists( $brezngeo_or_saved_model, $brezngeo_or_models );
+$brezngeo_or_cached_pricing   = get_transient( \BreznGEO\Providers\OpenRouterProvider::MODELS_CACHE );
+$brezngeo_or_cache_is_array   = is_array( $brezngeo_or_cached_pricing );
+$brezngeo_or_selected_pricing = ( $brezngeo_or_cache_is_array && isset( $brezngeo_or_cached_pricing[ $brezngeo_or_saved_model ] ) )
+	? $brezngeo_or_cached_pricing[ $brezngeo_or_saved_model ]
 	: null;
 ?>
 <br><br>
 <label><?php esc_html_e( 'Model:', 'brezngeo' ); ?></label>
 <select name="brezngeo_settings[models][openrouter]" class="brezngeo-openrouter-model-select" id="brezngeo-openrouter-model">
-	<?php if ( empty( $or_models ) ) : ?>
+	<?php if ( empty( $brezngeo_or_models ) ) : ?>
 		<option value=""><?php esc_html_e( 'No models loaded yet — click "Load models"', 'brezngeo' ); ?></option>
 	<?php else : ?>
-		<?php foreach ( $or_models as $or_mid => $or_label ) : ?>
-			<option value="<?php echo esc_attr( $or_mid ); ?>"
-				<?php selected( $or_saved_model, $or_mid ); ?>
-				data-input="<?php echo esc_attr( isset( $or_cached_pricing[ $or_mid ]['input_cost'] ) ? $or_cached_pricing[ $or_mid ]['input_cost'] : '' ); ?>"
-				data-output="<?php echo esc_attr( isset( $or_cached_pricing[ $or_mid ]['output_cost'] ) ? $or_cached_pricing[ $or_mid ]['output_cost'] : '' ); ?>">
-				<?php echo esc_html( $or_label ); ?>
+		<?php foreach ( $brezngeo_or_models as $brezngeo_or_mid => $brezngeo_or_label ) : ?>
+			<option value="<?php echo esc_attr( $brezngeo_or_mid ); ?>"
+				<?php selected( $brezngeo_or_saved_model, $brezngeo_or_mid ); ?>
+				data-input="<?php echo esc_attr( isset( $brezngeo_or_cached_pricing[ $brezngeo_or_mid ]['input_cost'] ) ? $brezngeo_or_cached_pricing[ $brezngeo_or_mid ]['input_cost'] : '' ); ?>"
+				data-output="<?php echo esc_attr( isset( $brezngeo_or_cached_pricing[ $brezngeo_or_mid ]['output_cost'] ) ? $brezngeo_or_cached_pricing[ $brezngeo_or_mid ]['output_cost'] : '' ); ?>">
+				<?php echo esc_html( $brezngeo_or_label ); ?>
 			</option>
 		<?php endforeach; ?>
 	<?php endif; ?>
-	<option value="__custom__" <?php selected( $or_is_custom ); ?>>
+	<option value="__custom__" <?php selected( $brezngeo_or_is_custom ); ?>>
 		<?php esc_html_e( 'Custom model ID…', 'brezngeo' ); ?>
 	</option>
 </select>
@@ -42,14 +42,14 @@ $or_selected_pricing = ( $or_cache_is_array && isset( $or_cached_pricing[ $or_sa
 </button>
 <span class="brezngeo-openrouter-load-status" aria-live="polite"></span>
 
-<div class="brezngeo-openrouter-custom-wrap" style="<?php echo $or_is_custom ? '' : 'display:none;'; ?>margin-top:10px;">
+<div class="brezngeo-openrouter-custom-wrap" style="<?php echo $brezngeo_or_is_custom ? '' : 'display:none;'; ?>margin-top:10px;">
 	<label for="brezngeo-openrouter-custom">
 		<?php esc_html_e( 'Custom model ID:', 'brezngeo' ); ?>
 	</label>
 	<input type="text"
 			id="brezngeo-openrouter-custom"
 			name="brezngeo_settings[openrouter_custom_model]"
-			value="<?php echo esc_attr( $or_is_custom ? $or_saved_model : '' ); ?>"
+			value="<?php echo esc_attr( $brezngeo_or_is_custom ? $brezngeo_or_saved_model : '' ); ?>"
 			placeholder="<?php esc_attr_e( 'e.g. anthropic/claude-opus-4.7', 'brezngeo' ); ?>"
 			class="regular-text">
 	<p class="description">
@@ -69,11 +69,11 @@ $or_selected_pricing = ( $or_cache_is_array && isset( $or_cached_pricing[ $or_sa
 
 <p style="margin-top:12px;"><strong><?php esc_html_e( 'Pricing (automatically from OpenRouter, per 1M tokens):', 'brezngeo' ); ?></strong></p>
 <div class="brezngeo-openrouter-pricing-display" id="brezngeo-openrouter-pricing" style="font-size:12px;color:#555;">
-	<?php if ( $or_selected_pricing ) : ?>
-		Input $<span class="or-price-input"><?php echo esc_html( number_format( (float) $or_selected_pricing['input_cost'], 4 ) ); ?></span>
-		/ 1M · Output $<span class="or-price-output"><?php echo esc_html( number_format( (float) $or_selected_pricing['output_cost'], 4 ) ); ?></span>
+	<?php if ( $brezngeo_or_selected_pricing ) : ?>
+		Input $<span class="or-price-input"><?php echo esc_html( number_format( (float) $brezngeo_or_selected_pricing['input_cost'], 4 ) ); ?></span>
+		/ 1M · Output $<span class="or-price-output"><?php echo esc_html( number_format( (float) $brezngeo_or_selected_pricing['output_cost'], 4 ) ); ?></span>
 		/ 1M
-	<?php elseif ( $or_is_custom ) : ?>
+	<?php elseif ( $brezngeo_or_is_custom ) : ?>
 		<em><?php esc_html_e( 'Pricing unknown for custom models — will be populated after you click "Load models".', 'brezngeo' ); ?></em>
 	<?php else : ?>
 		<em><?php esc_html_e( 'Click "Load models" to fetch pricing from OpenRouter.', 'brezngeo' ); ?></em>

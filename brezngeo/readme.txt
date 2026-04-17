@@ -237,6 +237,7 @@ No data is transmitted during normal page loads or to visitors.
 * New: OpenRouter as a fifth AI provider — access to 600+ models (Claude, GPT, Gemini, Llama, Mistral, DeepSeek, and more) through a single API key.
 * New: On-demand model loader fetches OpenRouter's curated Marketing/SEO model list with live per-model pricing.
 * New: Custom model ID field lets you route to any OpenRouter model (e.g. anthropic/claude-opus-4.7) without waiting for a plugin update.
+* New: OpenRouter joins the wp-config.php key-mapping (BREZNGEO_OPENROUTER_KEY) — define any provider key as a constant to keep it out of the database entirely; the admin field becomes read-only.
 
 = 1.2.2 =
 * i18n: Added explicit load_plugin_textdomain() call for reliable translation loading on ClassicPress and other WordPress derivatives.

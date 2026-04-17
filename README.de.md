@@ -300,10 +300,11 @@ Kein `openssl_*` oder externe Extension nötig — läuft auf jeder PHP 8.0+ Ins
 **Sicherheitsgrenzen:** XOR mit statischem Salt ist Verschleierung, keine kryptografische Verschlüsselung. Für maximale Sicherheit können Keys als `wp-config.php`-Konstanten definiert werden:
 
 ```php
-define( 'BREZNGEO_OPENAI_KEY',    'sk-...' );
-define( 'BREZNGEO_ANTHROPIC_KEY', 'sk-ant-...' );
-define( 'BREZNGEO_GEMINI_KEY',    'AI...' );
-define( 'BREZNGEO_GROK_KEY',      'xai-...' );
+define( 'BREZNGEO_OPENAI_KEY',     'sk-...' );
+define( 'BREZNGEO_ANTHROPIC_KEY',  'sk-ant-...' );
+define( 'BREZNGEO_GEMINI_KEY',     'AI...' );
+define( 'BREZNGEO_GROK_KEY',       'xai-...' );
+define( 'BREZNGEO_OPENROUTER_KEY', 'sk-or-...' );
 ```
 
 ### CSRF-Schutz und Capability Checks

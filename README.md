@@ -409,10 +409,11 @@ Plaintext key  →  XOR(key, sha256(AUTH_KEY . SECURE_AUTH_KEY))  →  base64  �
 **Security boundary:** XOR with a static salt is obfuscation, not cryptographic encryption. An attacker with access to **both** the database **and** `wp-config.php` can reconstruct the key. For maximum security, keys can be defined as `wp-config.php` constants — these take precedence over the database version:
 
 ```php
-define( 'BREZNGEO_OPENAI_KEY',    'sk-...' );
-define( 'BREZNGEO_ANTHROPIC_KEY', 'sk-ant-...' );
-define( 'BREZNGEO_GEMINI_KEY',    'AI...' );
-define( 'BREZNGEO_GROK_KEY',      'xai-...' );
+define( 'BREZNGEO_OPENAI_KEY',     'sk-...' );
+define( 'BREZNGEO_ANTHROPIC_KEY',  'sk-ant-...' );
+define( 'BREZNGEO_GEMINI_KEY',     'AI...' );
+define( 'BREZNGEO_GROK_KEY',       'xai-...' );
+define( 'BREZNGEO_OPENROUTER_KEY', 'sk-or-...' );
 ```
 
 In the admin UI, keys are always displayed masked: `••••••Ab3c9` (only the last 5 characters visible).

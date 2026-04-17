@@ -24,6 +24,12 @@ class SettingsPage {
 	public const OPTION_KEY_SCHEMA = 'brezngeo_schema_settings';
 
 	/**
+	 * Provider IDs that support a wp-config.php constant override.
+	 * A defined constant wins over the DB value and locks the UI field.
+	 */
+	private const CONSTANT_KEY_PROVIDERS = array( 'openai', 'anthropic', 'gemini', 'grok', 'openrouter' );
+
+	/**
 	 * Returns merged settings from both option keys with defaults applied.
 	 * Called by MetaGenerator, SchemaEnhancer, BulkPage, and admin pages.
 	 */
@@ -62,7 +68,35 @@ class SettingsPage {
 			$settings['api_keys'][ $id ] = $decrypted !== '' ? $decrypted : $stored;
 		}
 
+		// wp-config.php constants override the DB value and lock the admin field.
+		$settings['api_keys_locked'] = array();
+		foreach ( self::CONSTANT_KEY_PROVIDERS as $provider_id ) {
+			$constant = self::constantNameForProvider( $provider_id );
+			if ( $constant !== '' && defined( $constant ) ) {
+				$settings['api_keys'][ $provider_id ]        = (string) constant( $constant );
+				$settings['api_keys_locked'][ $provider_id ] = true;
+			}
+		}
+
 		return $settings;
+	}
+
+	/**
+	 * Returns the wp-config.php constant name for a given provider ID,
+	 * or empty string if the provider has no constant override.
+	 *
+	 * Must be pure — no WP hooks, no option reads. Called once per entry
+	 * in CONSTANT_KEY_PROVIDERS during getSettings().
+	 *
+	 * The website (de/index.html, howto.html) already promises the names
+	 * BREZNGEO_OPENAI_KEY, BREZNGEO_ANTHROPIC_KEY, BREZNGEO_GEMINI_KEY,
+	 * BREZNGEO_GROK_KEY and BREZNGEO_OPENROUTER_KEY — those are the contract.
+	 */
+	private static function constantNameForProvider( string $provider_id ): string {
+		if ( ! in_array( $provider_id, self::CONSTANT_KEY_PROVIDERS, true ) ) {
+			return '';
+		}
+		return 'BREZNGEO_' . strtoupper( $provider_id ) . '_KEY';
 	}
 
 	public static function getDefaultPrompt(): string {
