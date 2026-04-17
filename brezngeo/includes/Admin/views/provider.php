@@ -36,11 +36,11 @@
 				</td>
 			</tr>
 			<?php foreach ( $providers as $id => $provider ) : // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound ?>
-			<?php $locked = ! empty( $settings['api_keys_locked'][ $id ] ); ?>
+			<?php $brezngeo_locked = ! empty( $settings['api_keys_locked'][ $id ] ); ?>
 			<tr class="brezngeo-provider-row" data-provider="<?php echo esc_attr( $id ); ?>">
 				<th scope="row"><?php echo esc_html( $provider->getName() ); ?> <?php esc_html_e( 'API Key', 'brezngeo' ); ?></th>
 				<td>
-					<?php if ( $locked ) : ?>
+					<?php if ( $brezngeo_locked ) : ?>
 					<span class="brezngeo-key-saved">
 						<?php
 						printf(
